@@ -282,13 +282,13 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    filter:blur(7px) brightness(0.5);
-    transform:scale(1.08);
+    filter:blur(0) brightness(1);
+    transform:scale(1);
     transition:filter 0.4s ease, transform 0.4s ease;
   }
   .project-card:hover .project-thumb img{
-    filter:blur(0) brightness(1);
-    transform:scale(1);
+    filter:blur(7px) brightness(0.5);
+    transform:scale(1.08);
   }
   .thumb-overlay{
     position:absolute;
@@ -297,6 +297,8 @@
     align-items:center;
     justify-content:center;
     background:rgba(0,0,0,0.15);
+    opacity:0;
+    pointer-events:none;
     transition:opacity 0.35s ease;
   }
   .thumb-overlay svg{
@@ -304,8 +306,8 @@
     height:38px;
   }
   .project-card:hover .thumb-overlay{
-    opacity:0;
-    pointer-events:none;
+    opacity:1;
+    pointer-events:auto;
   }
   .project-thumb svg{width:44px;height:44px;}
   .thumb-vault{background:linear-gradient(135deg,#1d3a6e,#3B82F6);}
@@ -333,7 +335,7 @@
   .pcta:hover{color:var(--orange);}
 
   /* ---------- STACK ---------- */
-  .stack-groups{display:flex;flex-direction:column;gap:26px;}
+  .stack-groups{display:flex;flex-direction:column;gap:26px;margin-top:36px;}
   .stack-row{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;}
   .stack-row .glabel{
     font-family:'JetBrains Mono',monospace;
@@ -343,12 +345,28 @@
   }
   .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
   .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
     font-size:0.85rem;
     font-weight:500;
-    padding:6px 14px;
+    padding:6px 14px 6px 8px;
     border:1px solid var(--border);
     border-radius:999px;
     background:var(--panel);
+  }
+  .chip .chip-icon{
+    width:22px;
+    height:22px;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .chip .chip-icon svg{
+    width:13px;
+    height:13px;
   }
 
   /* ---------- FORA DO TECLADO ---------- */
@@ -506,6 +524,50 @@
   </div>
 </header>
 
+<div class="marquee marquee-top">
+
+    <div class="marquee-track">
+      <div class="tech-item"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M7.5 7h9l-.4 4H9.2l.2 2.2 2.6.8 2.6-.8.2-2"/></svg></div><span>HTML5</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M16 7H8l.3 3h7l-.4 4-3 1-3-1-.2-2"/></svg></div><span>CSS3</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3 1-3 3v2.5c0 1.2-.9 2-2 2.5 1.1.5 2 1.3 2 2.5V16c0 2 1 3 3 3"/><path d="M16 3c2 0 3 1 3 3v2.5c0 1.2.9 2 2 2.5-1.1.5-2 1.3-2 2.5V16c0 2-1 3-3 3"/></svg></div><span>JavaScript</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" fill="#fff" text-anchor="middle">TS</text></svg></div><span>TypeScript</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="15.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="8.5" fill="#fff" text-anchor="middle">PHP</text></svg></div><span>PHP</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
+      <!-- duplicado pra loop continuo -->
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M7.5 7h9l-.4 4H9.2l.2 2.2 2.6.8 2.6-.8.2-2"/></svg></div><span>HTML5</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M16 7H8l.3 3h7l-.4 4-3 1-3-1-.2-2"/></svg></div><span>CSS3</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3 1-3 3v2.5c0 1.2-.9 2-2 2.5 1.1.5 2 1.3 2 2.5V16c0 2 1 3 3 3"/><path d="M16 3c2 0 3 1 3 3v2.5c0 1.2.9 2 2 2.5-1.1.5-2 1.3-2 2.5V16c0 2-1 3-3 3"/></svg></div><span>JavaScript</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" fill="#fff" text-anchor="middle">TS</text></svg></div><span>TypeScript</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="15.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="8.5" fill="#fff" text-anchor="middle">PHP</text></svg></div><span>PHP</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
+      <!-- segundo duplicado -->
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M7.5 7h9l-.4 4H9.2l.2 2.2 2.6.8 2.6-.8.2-2"/></svg></div><span>HTML5</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M16 7H8l.3 3h7l-.4 4-3 1-3-1-.2-2"/></svg></div><span>CSS3</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3 1-3 3v2.5c0 1.2-.9 2-2 2.5 1.1.5 2 1.3 2 2.5V16c0 2 1 3 3 3"/><path d="M16 3c2 0 3 1 3 3v2.5c0 1.2.9 2 2 2.5-1.1.5-2 1.3-2 2.5V16c0 2-1 3-3 3"/></svg></div><span>JavaScript</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" fill="#fff" text-anchor="middle">TS</text></svg></div><span>TypeScript</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="15.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="8.5" fill="#fff" text-anchor="middle">PHP</text></svg></div><span>PHP</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
+    </div>
+  </div>
+
 <section id="sobre">
   <div class="wrap">
     <div class="eyebrow">// SOBRE</div>
@@ -543,7 +605,7 @@
       <div class="project-card reveal">
         <div class="project-thumb thumb-vault">
           <img src="images/vaultsecure.png" alt="Tela do VaultSecure">
-        <div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div></div>
+        <a class="thumb-overlay" href="https://github.com/itsbravos/VaultSecure" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
         <div class="ptitle">VaultSecure</div>
         <p class="pdesc">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem, o controle fica com você.</p>
         <div class="pill-row">
@@ -556,7 +618,7 @@
       <div class="project-card reveal">
         <div class="project-thumb thumb-financio">
           <img src="images/financio.png" alt="Tela do Financio">
-        <div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div></div>
+        <a class="thumb-overlay" href="https://github.com/itsbravos/Financio" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
         <div class="ptitle">Financio</div>
         <p class="pdesc">App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.</p>
         <div class="pill-row">
@@ -569,7 +631,7 @@
       <div class="project-card reveal">
         <div class="project-thumb thumb-clip">
           <img src="images/clipmaster.png" alt="Tela do ClipMaster for Linux">
-        <div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div></div>
+        <a class="thumb-overlay" href="https://github.com/itsbravos/ClipMaster-for-Linux" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
         <div class="ptitle">ClipMaster for Linux</div>
         <p class="pdesc">Ferramenta pra quem vive no terminal e cansou de perder o que copiou: gerenciador de área de transferência feito pra Linux.</p>
         <div class="pill-row">
@@ -588,46 +650,35 @@
     <div class="eyebrow">// STACK</div>
     <h2>Com o que eu trabalho</h2>
   </div>
-  <div class="marquee">
-    <div class="marquee-track">
-      <div class="tech-item"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>HTML5</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>CSS3</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>JavaScript</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>TypeScript</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>PHP</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
-      <!-- duplicado pra loop continuo -->
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>HTML5</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>CSS3</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>JavaScript</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>TypeScript</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>PHP</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
-      <!-- segundo duplicado -->
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>HTML5</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>CSS3</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>JavaScript</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>TypeScript</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>PHP</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
+  <div class="wrap">
+    <div class="stack-groups">
+      <div class="stack-row">
+        <span class="glabel">BACKEND</span>
+        <div class="chip-row">
+          <span class="chip"><span class="chip-icon" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></span>Java</span>
+          <span class="chip"><span class="chip-icon" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></span>Spring Boot</span>
+          <span class="chip"><span class="chip-icon" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="15.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="8.5" fill="#fff" text-anchor="middle">PHP</text></svg></span>PHP</span>
+          <span class="chip"><span class="chip-icon" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>Oracle</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="glabel">FRONTEND</span>
+        <div class="chip-row">
+          <span class="chip"><span class="chip-icon" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M7.5 7h9l-.4 4H9.2l.2 2.2 2.6.8 2.6-.8.2-2"/></svg></span>HTML5</span>
+          <span class="chip"><span class="chip-icon" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M16 7H8l.3 3h7l-.4 4-3 1-3-1-.2-2"/></svg></span>CSS3</span>
+          <span class="chip"><span class="chip-icon" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3 1-3 3v2.5c0 1.2-.9 2-2 2.5 1.1.5 2 1.3 2 2.5V16c0 2 1 3 3 3"/><path d="M16 3c2 0 3 1 3 3v2.5c0 1.2.9 2 2 2.5-1.1.5-2 1.3-2 2.5V16c0 2-1 3-3 3"/></svg></span>JavaScript</span>
+          <span class="chip"><span class="chip-icon" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" fill="#fff" text-anchor="middle">TS</text></svg></span>TypeScript</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="glabel">FERRAMENTAS</span>
+        <div class="chip-row">
+          <span class="chip"><span class="chip-icon" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></span>Git</span>
+          <span class="chip"><span class="chip-icon" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></span>SVN</span>
+          <span class="chip"><span class="chip-icon" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></span>Linux</span>
+          <span class="chip"><span class="chip-icon" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></span>VS Code</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
