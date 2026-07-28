@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ítalo Bravos — dev, gamer, criador</title>
-<meta name="description" content="Portfólio de Ítalo Victor Bravos — desenvolvedor, QA e criador de conteúdo.">
+<title>Ítalo Bravos, dev, gamer, criador</title>
+<meta name="description" content="Portfólio de Ítalo Victor Bravos, desenvolvedor, QA e criador de conteúdo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,8 +14,8 @@
     --panel:#1b1e27;
     --panel-alt:#21242f;
     --border:#2c303c;
-    --gold:#f2b705;
-    --orange:#ff6b35;
+    --gold:#3B82F6;
+    --orange:#38BDF8;
     --text:#f4f1ea;
     --text-muted:#9198a6;
     --radius:10px;
@@ -99,8 +99,8 @@
     position:relative;
     border-bottom:1px solid var(--border);
     background:
-      radial-gradient(circle at 15% 20%, rgba(242,183,5,0.08), transparent 45%),
-      radial-gradient(circle at 85% 60%, rgba(255,107,53,0.07), transparent 45%);
+      radial-gradient(circle at 15% 20%, rgba(59,130,246,0.10), transparent 45%),
+      radial-gradient(circle at 85% 60%, rgba(56,189,248,0.09), transparent 45%);
   }
 
   .tag-row{
@@ -145,20 +145,66 @@
     border-radius:999px;
     padding:8px 16px;
   }
+  .status-inner{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
   .status-dot{
     width:8px;height:8px;border-radius:50%;
     background:var(--gold);
-    box-shadow:0 0 0 0 rgba(242,183,5,0.6);
+    box-shadow:0 0 0 0 rgba(59,130,246,0.6);
     animation:pulse 2s infinite;
   }
   @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(242,183,5,0.5);}
-    70%{box-shadow:0 0 0 8px rgba(242,183,5,0);}
-    100%{box-shadow:0 0 0 0 rgba(242,183,5,0);}
+    0%{box-shadow:0 0 0 0 rgba(59,130,246,0.5);}
+    70%{box-shadow:0 0 0 8px rgba(59,130,246,0);}
+    100%{box-shadow:0 0 0 0 rgba(59,130,246,0);}
   }
   @media (prefers-reduced-motion:reduce){
     .status-dot{animation:none;}
     html{scroll-behavior:auto;}
+  }
+
+  /* ---------- REVEAL / ENTRANCE ANIMATIONS ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  .hero-enter{
+    opacity:0;
+    transform:translateY(16px);
+    animation:heroEnter 0.7s ease forwards;
+  }
+  .hero-enter:nth-child(1){animation-delay:0.05s;}
+  .hero-enter:nth-child(2){animation-delay:0.18s;}
+  .hero-enter:nth-child(3){animation-delay:0.31s;}
+  .hero-enter:nth-child(4){animation-delay:0.44s;}
+  @keyframes heroEnter{
+    to{opacity:1;transform:translateY(0);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hero-enter{animation:none;opacity:1;transform:none;}
+  }
+
+  .float{
+    animation:floaty 5s ease-in-out infinite;
+  }
+  @keyframes floaty{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .float{animation:none;}
   }
 
   /* ---------- SECTION HEADS ---------- */
@@ -321,17 +367,19 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="tag-row">
+    <div class="tag-row hero-enter">
       <span class="tag">DEVELOPER</span>
       <span class="tag">QA</span>
       <span class="tag">CRIADOR DE CONTEÚDO</span>
       <span class="tag">CURITIBA, PR</span>
     </div>
-    <h1>Ítalo Victor<br><span class="accent">Bravos</span></h1>
-    <p class="hero-sub">Desenvolvedor e QA de dia, jogador de CS2 e criador de conteúdo de gameplay no tempo livre. Construo coisas que funcionam de verdade — no código e na live.</p>
-    <div class="status-line">
-      <span class="status-dot"></span>
-      <span id="status-text">compilando alguma coisa</span>
+    <h1 class="hero-enter">Ítalo Victor<br><span class="accent">Bravos</span></h1>
+    <p class="hero-sub hero-enter">Desenvolvedor e QA de dia, jogador de Rainbow Six Siege e criador de conteúdo de gameplay no tempo livre. Construo coisas que funcionam de verdade, no código e na live.</p>
+    <div class="status-line hero-enter">
+      <span class="float status-inner">
+        <span class="status-dot"></span>
+        <span id="status-text">compilando alguma coisa</span>
+      </span>
     </div>
   </div>
 </header>
@@ -346,17 +394,17 @@
         <p>Fora do expediente, o teclado não descansa: viro streamer/criador de conteúdo de CS2, edito vídeo no DaVinci Resolve e, de vez em quando, troco o mouse pelo violão pra tocar um sertanejo.</p>
       </div>
       <div>
-        <div class="stat-box">
+        <div class="stat-box reveal">
           <div class="label">Base</div>
-          <div class="value">Curitiba, PR — Brasil</div>
+          <div class="value">Curitiba, PR, Brasil</div>
         </div>
-        <div class="stat-box">
+        <div class="stat-box reveal">
           <div class="label">Time</div>
           <div class="value">Wise System</div>
         </div>
-        <div class="stat-box">
+        <div class="stat-box reveal">
           <div class="label">Game principal</div>
-          <div class="value">Counter-Strike 2</div>
+          <div class="value">Rainbow Six Siege</div>
         </div>
       </div>
     </div>
@@ -369,9 +417,9 @@
     <h2>Coisas que eu construí</h2>
     <div class="project-grid">
 
-      <div class="project-card">
+      <div class="project-card reveal">
         <div class="ptitle">VaultSecure</div>
-        <p class="pdesc">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem — o controle fica com você.</p>
+        <p class="pdesc">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem, o controle fica com você.</p>
         <div class="pill-row">
           <span class="pill">TypeScript</span>
           <span class="pill">Segurança</span>
@@ -379,7 +427,7 @@
         <a class="pcta" href="https://github.com/itsbravos/VaultSecure" target="_blank" rel="noopener">ver repositório →</a>
       </div>
 
-      <div class="project-card">
+      <div class="project-card reveal">
         <div class="ptitle">Financio</div>
         <p class="pdesc">App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.</p>
         <div class="pill-row">
@@ -389,9 +437,9 @@
         <a class="pcta" href="https://github.com/itsbravos/Financio" target="_blank" rel="noopener">ver repositório →</a>
       </div>
 
-      <div class="project-card">
+      <div class="project-card reveal">
         <div class="ptitle">ClipMaster for Linux</div>
-        <p class="pdesc">Ferramenta pra quem vive no terminal e cansou de perder o que copiou — gerenciador de área de transferência feito pra Linux.</p>
+        <p class="pdesc">Ferramenta pra quem vive no terminal e cansou de perder o que copiou: gerenciador de área de transferência feito pra Linux.</p>
         <div class="pill-row">
           <span class="pill">TypeScript</span>
           <span class="pill">Linux</span>
@@ -444,19 +492,19 @@
     <div class="eyebrow">// FORA DO TECLADO</div>
     <h2>Quando o VS Code fecha</h2>
     <div class="off-grid">
-      <div class="off-card">
-        <span class="emoji">🎯</span>
-        <h3>CS2 competitivo</h3>
-        <p>Rankeando e mexendo em setup de stream — de otimização de áudio a configuração de lobby.</p>
+      <div class="off-card reveal">
+        <span class="emoji">🏆</span>
+        <h3>Platinando jogos</h3>
+        <p>Sempre atrás da platina, caçando troféu por troféu até fechar o jogo 100%.</p>
       </div>
-      <div class="off-card">
+      <div class="off-card reveal">
         <span class="emoji">🎬</span>
         <h3>Conteúdo de gameplay</h3>
         <p>Gravo e edito vídeo de gameplay no DaVinci Resolve pro YouTube.</p>
       </div>
-      <div class="off-card">
+      <div class="off-card reveal">
         <span class="emoji">🎸</span>
-        <h3>Violão</h3>
+        <h3>Tocando instrumentos</h3>
         <p>Nas horas vagas, é sertanejo no violão.</p>
       </div>
     </div>
@@ -467,7 +515,7 @@
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center;display:flex;">// CONTATO</div>
     <h2>Bora trocar uma ideia</h2>
-    <p class="hero-sub">GitHub, Instagram, Steam ou e-mail — escolhe o canal.</p>
+    <p class="hero-sub">GitHub, Instagram, Steam ou e-mail, escolhe o canal.</p>
     <div class="contact-row">
       <a class="contact-pill" href="https://github.com/itsbravos" target="_blank" rel="noopener">GitHub</a>
       <a class="contact-pill" href="https://www.instagram.com/itsbravos/" target="_blank" rel="noopener">Instagram</a>
@@ -479,15 +527,17 @@
 </footer>
 
 <script>
+  const el = document.getElementById('status-text');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const statuses = [
     "compilando alguma coisa",
-    "rankeando no CS2",
+    "rankeando no Rainbow Six Siege",
     "editando um clipe novo",
     "revisando um PR",
     "afinando o violão"
   ];
-  const el = document.getElementById('status-text');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   if(!reduceMotion){
     let i = 0;
     setInterval(() => {
@@ -499,6 +549,21 @@
       }, 250);
     }, 3200);
     el.style.transition = 'opacity 0.25s';
+  }
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if(reduceMotion){
+    revealEls.forEach(item => item.classList.add('visible'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(item => observer.observe(item));
   }
 </script>
 
