@@ -274,13 +274,11 @@
     width:100%;
     aspect-ratio:16/9;
     border-radius:6px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     overflow:hidden;
     position:relative;
   }
   .project-thumb img{
+    display:block;
     width:100%;
     height:100%;
     object-fit:cover;
@@ -424,7 +422,7 @@
     display:flex;
     width:max-content;
     gap:56px;
-    animation:scrollLogos 26s linear infinite;
+    animation:scrollLogos 39s linear infinite;
   }
   .marquee:hover .marquee-track{
     animation-play-state:paused;
@@ -465,7 +463,7 @@
   }
   @keyframes scrollLogos{
     from{transform:translateX(0);}
-    to{transform:translateX(-50%);}
+    to{transform:translateX(-33.3333%);}
   }
   @media (prefers-reduced-motion:reduce){
     .marquee{overflow-x:auto;}
@@ -545,7 +543,7 @@
       <div class="project-card reveal">
         <div class="project-thumb thumb-vault">
           <img src="images/vaultsecure.png" alt="Tela do VaultSecure">
-        </div><div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+        <div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div></div>
         <div class="ptitle">VaultSecure</div>
         <p class="pdesc">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem, o controle fica com você.</p>
         <div class="pill-row">
@@ -558,7 +556,7 @@
       <div class="project-card reveal">
         <div class="project-thumb thumb-financio">
           <img src="images/financio.png" alt="Tela do Financio">
-        </div><div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+        <div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div></div>
         <div class="ptitle">Financio</div>
         <p class="pdesc">App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.</p>
         <div class="pill-row">
@@ -571,7 +569,7 @@
       <div class="project-card reveal">
         <div class="project-thumb thumb-clip">
           <img src="images/clipmaster.png" alt="Tela do ClipMaster for Linux">
-        </div><div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+        <div class="thumb-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div></div>
         <div class="ptitle">ClipMaster for Linux</div>
         <p class="pdesc">Ferramenta pra quem vive no terminal e cansou de perder o que copiou: gerenciador de área de transferência feito pra Linux.</p>
         <div class="pill-row">
@@ -604,7 +602,20 @@
       <div class="tech-item"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
       <div class="tech-item"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
       <div class="tech-item"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
-      <!-- duplicado pra loop contínuo -->
+      <!-- duplicado pra loop continuo -->
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>HTML5</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>CSS3</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>JavaScript</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>TypeScript</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>PHP</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
+      <!-- segundo duplicado -->
       <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>HTML5</span></div>
       <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>CSS3</span></div>
       <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></div><span>JavaScript</span></div>
