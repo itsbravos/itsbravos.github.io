@@ -270,6 +270,24 @@
     border-color:var(--gold);
     transform:translateY(-3px);
   }
+  .project-thumb{
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .project-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .project-thumb svg{width:44px;height:44px;}
+  .thumb-vault{background:linear-gradient(135deg,#1d3a6e,#3B82F6);}
+  .thumb-financio{background:linear-gradient(135deg,#0f2747,#38BDF8);}
+  .thumb-clip{background:linear-gradient(135deg,#111827,#2563EB);}
   .project-card .ptitle{font-size:1.25rem;}
   .project-card .pdesc{color:var(--text-muted);font-size:0.92rem;flex-grow:1;}
   .pill-row{display:flex;flex-wrap:wrap;gap:6px;}
@@ -347,6 +365,87 @@
     transition:border-color 0.2s, color 0.2s;
   }
   .contact-pill:hover{border-color:var(--gold);color:var(--gold);}
+  .resume-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.85rem;
+    font-weight:500;
+    padding:12px 22px;
+    border-radius:999px;
+    background:var(--gold);
+    color:var(--bg);
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .resume-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(59,130,246,0.35);
+  }
+
+  /* ---------- MARQUEE (STACK) ---------- */
+  .marquee{
+    width:100%;
+    overflow:hidden;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    background:var(--panel);
+    padding:28px 0;
+    mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    gap:56px;
+    animation:scrollLogos 26s linear infinite;
+  }
+  .marquee:hover .marquee-track{
+    animation-play-state:paused;
+  }
+  .tech-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    opacity:0.85;
+    transition:opacity 0.2s, transform 0.2s;
+  }
+  .tech-item:hover{
+    opacity:1;
+    transform:translateY(-4px);
+  }
+  .tech-item img{
+    width:34px;
+    height:34px;
+  }
+  .tech-badge{
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:0.72rem;
+    letter-spacing:0.02em;
+  }
+  .tech-item span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    color:var(--text-muted);
+    white-space:nowrap;
+  }
+  @keyframes scrollLogos{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .marquee{overflow-x:auto;}
+    .marquee-track{animation:none;}
+  }
   .copyright{color:var(--text-muted);font-size:0.78rem;font-family:'JetBrains Mono',monospace;}
 </style>
 </head>
@@ -392,6 +491,7 @@
       <div>
         <p>Trabalho com suporte técnico e entrega de projetos, transitando entre sistemas backend (Java, Spring Boot, Oracle) e infraestrutura de coleções digitais (Omeka S, IIIF/Mirador). No dia a dia também mantenho repositórios via SVN e apoio times de Sustentação, Infraestrutura e Desenvolvimento.</p>
         <p>Fora do expediente, o teclado não descansa: viro streamer/criador de conteúdo de CS2, edito vídeo no DaVinci Resolve e, de vez em quando, troco o mouse pelo violão pra tocar um sertanejo.</p>
+        <a class="resume-btn" href="https://express.adobe.com/publishedV2/urn:aaid:sc:US:f877095e-0457-5854-8889-a09675451264?promoid=Y69SGM5H&sdid=C4SZ2FYJ&mv=other" target="_blank" rel="noopener">Ver Currículo →</a>
       </div>
       <div>
         <div class="stat-box reveal">
@@ -418,6 +518,9 @@
     <div class="project-grid">
 
       <div class="project-card reveal">
+        <div class="project-thumb thumb-vault">
+          <img src="images/vaultsecure.png" alt="Tela do VaultSecure">
+        </div>
         <div class="ptitle">VaultSecure</div>
         <p class="pdesc">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem, o controle fica com você.</p>
         <div class="pill-row">
@@ -428,6 +531,9 @@
       </div>
 
       <div class="project-card reveal">
+        <div class="project-thumb thumb-financio">
+          <img src="images/financio.png" alt="Tela do Financio">
+        </div>
         <div class="ptitle">Financio</div>
         <p class="pdesc">App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.</p>
         <div class="pill-row">
@@ -438,6 +544,9 @@
       </div>
 
       <div class="project-card reveal">
+        <div class="project-thumb thumb-clip">
+          <img src="images/clipmaster.png" alt="Tela do ClipMaster for Linux">
+        </div>
         <div class="ptitle">ClipMaster for Linux</div>
         <p class="pdesc">Ferramenta pra quem vive no terminal e cansou de perder o que copiou: gerenciador de área de transferência feito pra Linux.</p>
         <div class="pill-row">
@@ -455,34 +564,34 @@
   <div class="wrap">
     <div class="eyebrow">// STACK</div>
     <h2>Com o que eu trabalho</h2>
-    <div class="stack-groups">
-      <div class="stack-row">
-        <span class="glabel">BACKEND</span>
-        <div class="chip-row">
-          <span class="chip">Java</span>
-          <span class="chip">Spring Boot</span>
-          <span class="chip">PHP</span>
-          <span class="chip">Oracle</span>
-        </div>
-      </div>
-      <div class="stack-row">
-        <span class="glabel">FRONTEND</span>
-        <div class="chip-row">
-          <span class="chip">HTML5</span>
-          <span class="chip">CSS3</span>
-          <span class="chip">JavaScript</span>
-          <span class="chip">TypeScript</span>
-        </div>
-      </div>
-      <div class="stack-row">
-        <span class="glabel">FERRAMENTAS</span>
-        <div class="chip-row">
-          <span class="chip">Git</span>
-          <span class="chip">SVN</span>
-          <span class="chip">Linux</span>
-          <span class="chip">VS Code</span>
-        </div>
-      </div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="tech-item"><div class="tech-badge" style="background:#E34F26;color:#fff;">HTML</div><span>HTML5</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#1572B6;color:#fff;">CSS</div><span>CSS3</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#F7DF1E;color:#1a1a1a;">JS</div><span>JavaScript</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#3178C6;color:#fff;">TS</div><span>TypeScript</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#ED8B00;color:#fff;">JAVA</div><span>Java</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#6DB33F;color:#fff;">SPR</div><span>Spring Boot</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#777BB4;color:#fff;">PHP</div><span>PHP</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#F80000;color:#fff;">ORCL</div><span>Oracle</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#F05032;color:#fff;">GIT</div><span>Git</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#809CC9;color:#fff;">SVN</div><span>SVN</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#FCC624;color:#1a1a1a;">LNX</div><span>Linux</span></div>
+      <div class="tech-item"><div class="tech-badge" style="background:#007ACC;color:#fff;">VSC</div><span>VS Code</span></div>
+      <!-- duplicado pra loop contínuo -->
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;color:#fff;">HTML</div><span>HTML5</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;color:#fff;">CSS</div><span>CSS3</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;color:#1a1a1a;">JS</div><span>JavaScript</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#3178C6;color:#fff;">TS</div><span>TypeScript</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#ED8B00;color:#fff;">JAVA</div><span>Java</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#6DB33F;color:#fff;">SPR</div><span>Spring Boot</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#777BB4;color:#fff;">PHP</div><span>PHP</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F80000;color:#fff;">ORCL</div><span>Oracle</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F05032;color:#fff;">GIT</div><span>Git</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#809CC9;color:#fff;">SVN</div><span>SVN</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#FCC624;color:#1a1a1a;">LNX</div><span>Linux</span></div>
+      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#007ACC;color:#fff;">VSC</div><span>VS Code</span></div>
     </div>
   </div>
 </section>
@@ -515,9 +624,10 @@
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center;display:flex;">// CONTATO</div>
     <h2>Bora trocar uma ideia</h2>
-    <p class="hero-sub">GitHub, Instagram, Steam ou e-mail, escolhe o canal.</p>
+    <p class="hero-sub">GitHub, LinkedIn, Instagram, Steam ou e-mail, escolhe o canal.</p>
     <div class="contact-row">
       <a class="contact-pill" href="https://github.com/itsbravos" target="_blank" rel="noopener">GitHub</a>
+      <a class="contact-pill" href="https://www.linkedin.com/in/italobravos/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="contact-pill" href="https://www.instagram.com/itsbravos/" target="_blank" rel="noopener">Instagram</a>
       <a class="contact-pill" href="https://steamcommunity.com/id/ItsBravos/" target="_blank" rel="noopener">Steam</a>
       <a class="contact-pill" href="mailto:italo38643411@gmail.com">Email</a>
