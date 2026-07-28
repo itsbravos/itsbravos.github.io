@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ítalo Bravos — dev, gamer, criador</title>
+<meta name="description" content="Portfólio de Ítalo Victor Bravos — desenvolvedor, QA e criador de conteúdo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14161c;
+    --panel:#1b1e27;
+    --panel-alt:#21242f;
+    --border:#2c303c;
+    --gold:#f2b705;
+    --orange:#ff6b35;
+    --text:#f4f1ea;
+    --text-muted:#9198a6;
+    --radius:10px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Rajdhani',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    font-weight:700;
+  }
+
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  a{color:inherit;text-decoration:none;}
+
+  :focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(20,22,28,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:0.05em;
+  }
+  .logo span{color:var(--gold);}
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-size:0.9rem;
+    font-weight:500;
+  }
+  .nav-links a{
+    color:var(--text-muted);
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--gold);}
+
+  @media (max-width:640px){
+    .nav-links{gap:16px;font-size:0.8rem;}
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:110px 0 90px;
+    position:relative;
+    border-bottom:1px solid var(--border);
+    background:
+      radial-gradient(circle at 15% 20%, rgba(242,183,5,0.08), transparent 45%),
+      radial-gradient(circle at 85% 60%, rgba(255,107,53,0.07), transparent 45%);
+  }
+
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:22px;
+  }
+  .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    padding:5px 10px;
+    border:1px solid var(--border);
+    border-radius:4px;
+    color:var(--text-muted);
+    letter-spacing:0.03em;
+  }
+
+  header.hero h1{
+    font-size:clamp(2.6rem,7vw,4.6rem);
+    line-height:0.98;
+    margin-bottom:18px;
+  }
+  header.hero h1 .accent{color:var(--gold);}
+
+  .hero-sub{
+    max-width:520px;
+    color:var(--text-muted);
+    font-size:1.05rem;
+    margin-bottom:28px;
+  }
+
+  .status-line{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.85rem;
+    color:var(--text-muted);
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:8px 16px;
+  }
+  .status-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 0 0 rgba(242,183,5,0.6);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(242,183,5,0.5);}
+    70%{box-shadow:0 0 0 8px rgba(242,183,5,0);}
+    100%{box-shadow:0 0 0 0 rgba(242,183,5,0);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .status-dot{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:80px 0;border-bottom:1px solid var(--border);}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--gold);
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+  section h2{
+    font-size:clamp(1.8rem,4vw,2.4rem);
+    margin-bottom:36px;
+  }
+
+  /* ---------- SOBRE ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .about-grid p{color:var(--text-muted);margin-bottom:16px;font-size:1rem;}
+  .stat-box{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+  }
+  .stat-box + .stat-box{margin-top:12px;}
+  .stat-box .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    color:var(--text-muted);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:4px;
+  }
+  .stat-box .value{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:1.15rem;}
+
+  @media (max-width:800px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- PROJETOS ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+  }
+  .project-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover{
+    border-color:var(--gold);
+    transform:translateY(-3px);
+  }
+  .project-card .ptitle{font-size:1.25rem;}
+  .project-card .pdesc{color:var(--text-muted);font-size:0.92rem;flex-grow:1;}
+  .pill-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .pill{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;
+    padding:3px 8px;
+    border-radius:4px;
+    background:var(--panel-alt);
+    color:var(--text-muted);
+  }
+  .pcta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.8rem;
+    color:var(--gold);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .pcta:hover{color:var(--orange);}
+
+  /* ---------- STACK ---------- */
+  .stack-groups{display:flex;flex-direction:column;gap:26px;}
+  .stack-row{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;}
+  .stack-row .glabel{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    color:var(--gold);
+    min-width:110px;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:0.85rem;
+    font-weight:500;
+    padding:6px 14px;
+    border:1px solid var(--border);
+    border-radius:999px;
+    background:var(--panel);
+  }
+
+  /* ---------- FORA DO TECLADO ---------- */
+  .off-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;
+  }
+  .off-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .off-card .emoji{font-size:1.5rem;margin-bottom:10px;display:block;}
+  .off-card h3{font-size:1.05rem;margin-bottom:6px;}
+  .off-card p{color:var(--text-muted);font-size:0.88rem;}
+
+  /* ---------- CONTATO / FOOTER ---------- */
+  footer{padding:70px 0 50px;text-align:center;}
+  footer h2{margin-bottom:12px;}
+  footer .hero-sub{margin:0 auto 30px;text-align:center;}
+  .contact-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:40px;
+  }
+  .contact-pill{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.85rem;
+    padding:10px 20px;
+    border:1px solid var(--border);
+    border-radius:999px;
+    background:var(--panel);
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .contact-pill:hover{border-color:var(--gold);color:var(--gold);}
+  .copyright{color:var(--text-muted);font-size:0.78rem;font-family:'JetBrains Mono',monospace;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">ITSBRA<span>VOS</span></div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#stack">Stack</a>
+      <a href="#fora">Fora do teclado</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="tag-row">
+      <span class="tag">DEVELOPER</span>
+      <span class="tag">QA</span>
+      <span class="tag">CRIADOR DE CONTEÚDO</span>
+      <span class="tag">CURITIBA, PR</span>
+    </div>
+    <h1>Ítalo Victor<br><span class="accent">Bravos</span></h1>
+    <p class="hero-sub">Desenvolvedor e QA de dia, jogador de CS2 e criador de conteúdo de gameplay no tempo livre. Construo coisas que funcionam de verdade — no código e na live.</p>
+    <div class="status-line">
+      <span class="status-dot"></span>
+      <span id="status-text">compilando alguma coisa</span>
+    </div>
+  </div>
+</header>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="eyebrow">// SOBRE</div>
+    <h2>Quem manja do que tá rolando</h2>
+    <div class="about-grid">
+      <div>
+        <p>Trabalho com suporte técnico e entrega de projetos, transitando entre sistemas backend (Java, Spring Boot, Oracle) e infraestrutura de coleções digitais (Omeka S, IIIF/Mirador). No dia a dia também mantenho repositórios via SVN e apoio times de Sustentação, Infraestrutura e Desenvolvimento.</p>
+        <p>Fora do expediente, o teclado não descansa: viro streamer/criador de conteúdo de CS2, edito vídeo no DaVinci Resolve e, de vez em quando, troco o mouse pelo violão pra tocar um sertanejo.</p>
+      </div>
+      <div>
+        <div class="stat-box">
+          <div class="label">Base</div>
+          <div class="value">Curitiba, PR — Brasil</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Time</div>
+          <div class="value">Wise System</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Game principal</div>
+          <div class="value">Counter-Strike 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="wrap">
+    <div class="eyebrow">// PROJETOS</div>
+    <h2>Coisas que eu construí</h2>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="ptitle">VaultSecure</div>
+        <p class="pdesc">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem — o controle fica com você.</p>
+        <div class="pill-row">
+          <span class="pill">TypeScript</span>
+          <span class="pill">Segurança</span>
+        </div>
+        <a class="pcta" href="https://github.com/itsbravos/VaultSecure" target="_blank" rel="noopener">ver repositório →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="ptitle">Financio</div>
+        <p class="pdesc">App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.</p>
+        <div class="pill-row">
+          <span class="pill">TypeScript</span>
+          <span class="pill">Multi-conta</span>
+        </div>
+        <a class="pcta" href="https://github.com/itsbravos/Financio" target="_blank" rel="noopener">ver repositório →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="ptitle">ClipMaster for Linux</div>
+        <p class="pdesc">Ferramenta pra quem vive no terminal e cansou de perder o que copiou — gerenciador de área de transferência feito pra Linux.</p>
+        <div class="pill-row">
+          <span class="pill">TypeScript</span>
+          <span class="pill">Linux</span>
+        </div>
+        <a class="pcta" href="https://github.com/itsbravos/ClipMaster-for-Linux" target="_blank" rel="noopener">ver repositório →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="eyebrow">// STACK</div>
+    <h2>Com o que eu trabalho</h2>
+    <div class="stack-groups">
+      <div class="stack-row">
+        <span class="glabel">BACKEND</span>
+        <div class="chip-row">
+          <span class="chip">Java</span>
+          <span class="chip">Spring Boot</span>
+          <span class="chip">PHP</span>
+          <span class="chip">Oracle</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="glabel">FRONTEND</span>
+        <div class="chip-row">
+          <span class="chip">HTML5</span>
+          <span class="chip">CSS3</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">TypeScript</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="glabel">FERRAMENTAS</span>
+        <div class="chip-row">
+          <span class="chip">Git</span>
+          <span class="chip">SVN</span>
+          <span class="chip">Linux</span>
+          <span class="chip">VS Code</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fora">
+  <div class="wrap">
+    <div class="eyebrow">// FORA DO TECLADO</div>
+    <h2>Quando o VS Code fecha</h2>
+    <div class="off-grid">
+      <div class="off-card">
+        <span class="emoji">🎯</span>
+        <h3>CS2 competitivo</h3>
+        <p>Rankeando e mexendo em setup de stream — de otimização de áudio a configuração de lobby.</p>
+      </div>
+      <div class="off-card">
+        <span class="emoji">🎬</span>
+        <h3>Conteúdo de gameplay</h3>
+        <p>Gravo e edito vídeo de gameplay no DaVinci Resolve pro YouTube.</p>
+      </div>
+      <div class="off-card">
+        <span class="emoji">🎸</span>
+        <h3>Violão</h3>
+        <p>Nas horas vagas, é sertanejo no violão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;display:flex;">// CONTATO</div>
+    <h2>Bora trocar uma ideia</h2>
+    <p class="hero-sub">GitHub, Instagram, Steam ou e-mail — escolhe o canal.</p>
+    <div class="contact-row">
+      <a class="contact-pill" href="https://github.com/itsbravos" target="_blank" rel="noopener">GitHub</a>
+      <a class="contact-pill" href="https://www.instagram.com/itsbravos/" target="_blank" rel="noopener">Instagram</a>
+      <a class="contact-pill" href="https://steamcommunity.com/id/ItsBravos/" target="_blank" rel="noopener">Steam</a>
+      <a class="contact-pill" href="mailto:italo38643411@gmail.com">Email</a>
+    </div>
+    <div class="copyright">© 2026 Ítalo Victor Bravos</div>
+  </div>
+</footer>
+
+<script>
+  const statuses = [
+    "compilando alguma coisa",
+    "rankeando no CS2",
+    "editando um clipe novo",
+    "revisando um PR",
+    "afinando o violão"
+  ];
+  const el = document.getElementById('status-text');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduceMotion){
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % statuses.length;
+      el.style.opacity = 0;
+      setTimeout(() => {
+        el.textContent = statuses[i];
+        el.style.opacity = 1;
+      }, 250);
+    }, 3200);
+    el.style.transition = 'opacity 0.25s';
+  }
+</script>
+
+</body>
+</html>
