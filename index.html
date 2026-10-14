@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Portfólio de Ítalo Victor Bravos, desenvolvedor, QA e criador de conteúdo.">
-<title>Ítalo Bravos, dev, gamer, criador</title>
+<meta name="description" content="Portfolio of Ítalo Victor Bravos, developer, QA and content creator.">
+<title>Ítalo Bravos, dev, gamer, creator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
@@ -265,51 +265,60 @@
 </head>
 <body class="crt">
 
-<a class="skip" href="#conteudo" data-i18n="skip">Pular para o conteúdo</a>
+<a class="skip" href="#conteudo" data-i18n="skip">Skip to content</a>
 
 <header class="top">
   <div class="wrap">
     <a href="#topo" class="brand" aria-label="itsbravos — início">[~/itsbravos]$</a>
-    <nav class="nav" aria-label="Seções" data-i18n-aria="navLabel">
-      <a href="#sobre"><span class="n" aria-hidden="true">01.</span><span data-i18n="nav1">sobre</span></a>
-      <a href="#projetos"><span class="n" aria-hidden="true">02.</span><span data-i18n="nav2">projetos</span></a>
+    <nav class="nav" aria-label="Sections" data-i18n-aria="navLabel">
+      <a href="#sobre"><span class="n" aria-hidden="true">01.</span><span data-i18n="nav1">about</span></a>
+      <a href="#projetos"><span class="n" aria-hidden="true">02.</span><span data-i18n="nav2">projects</span></a>
       <a href="#stack"><span class="n" aria-hidden="true">03.</span><span data-i18n="nav3">stack</span></a>
-      <a href="#fora"><span class="n" aria-hidden="true">04.</span><span data-i18n="nav4">fora_do_teclado</span></a>
-      <a href="#contato"><span class="n" aria-hidden="true">05.</span><span data-i18n="nav5">contato</span></a>
+      <a href="#fora"><span class="n" aria-hidden="true">04.</span><span data-i18n="nav4">off_the_keyboard</span></a>
+      <a href="#contato"><span class="n" aria-hidden="true">05.</span><span data-i18n="nav5">contact</span></a>
     </nav>
     <div class="tools">
-      <div class="lang" role="group" aria-label="Idioma" data-i18n-aria="langLabel">
-        <button type="button" class="tbtn" data-lang="pt" lang="pt-BR" aria-label="Português">PT</button>
+      <div class="lang" role="group" aria-label="Language" data-i18n-aria="langLabel">
         <button type="button" class="tbtn" data-lang="en" lang="en" aria-label="English">EN</button>
+        <button type="button" class="tbtn" data-lang="pt" lang="pt-BR" aria-label="Português">PT</button>
       </div>
       <div class="a11y-wrap">
         <button type="button" class="tbtn" id="a11y-btn" aria-expanded="false" aria-controls="a11y-panel">
-          <span aria-hidden="true">[a11y]</span><span class="sr-only" data-i18n="a11yBtn">Opções de acessibilidade</span>
+          <span aria-hidden="true">[a11y]</span><span class="sr-only" data-i18n="a11yBtn">Accessibility options</span>
         </button>
         <div class="a11y" id="a11y-panel" role="region" aria-labelledby="a11y-title" hidden>
-          <div class="a11y-head" id="a11y-title" data-i18n="a11yTitle">$ acessibilidade --config</div>
+          <div class="a11y-head" id="a11y-title" data-i18n="a11yTitle">$ accessibility --config</div>
           <div class="a11y-body">
             <div class="a11y-row" role="group" aria-labelledby="lbl-size">
-              <span id="lbl-size" data-i18n="a11ySize">Tamanho do texto</span>
+              <span id="lbl-size" data-i18n="a11ySize">Text size</span>
               <div class="seg">
                 <button type="button" class="tbtn" data-size="md">A</button>
                 <button type="button" class="tbtn" data-size="lg" style="font-size:.9375rem">A+</button>
                 <button type="button" class="tbtn" data-size="xl" style="font-size:1.0625rem">A++</button>
               </div>
             </div>
+            <div class="a11y-row" role="group" aria-labelledby="lbl-theme">
+              <span id="lbl-theme" data-i18n="themeLabel">Terminal color</span>
+              <div class="seg">
+                <button type="button" class="tbtn" data-set="green">green</button>
+                <button type="button" class="tbtn" data-set="amber">amber</button>
+                <button type="button" class="tbtn" data-set="cyan">cyan</button>
+                <button type="button" class="tbtn" data-set="pink">pink</button>
+              </div>
+            </div>
             <button type="button" class="tbtn toggle" data-toggle="contrast" aria-pressed="false">
-              <span data-i18n="a11yContrast">Alto contraste</span><span class="state" aria-hidden="true">[ ]</span>
+              <span data-i18n="a11yContrast">High contrast</span><span class="state" aria-hidden="true">[ ]</span>
             </button>
             <button type="button" class="tbtn toggle" data-toggle="readable" aria-pressed="false">
-              <span data-i18n="a11yReadable">Fonte de leitura fácil</span><span class="state" aria-hidden="true">[ ]</span>
+              <span data-i18n="a11yReadable">Easy-reading font</span><span class="state" aria-hidden="true">[ ]</span>
             </button>
             <button type="button" class="tbtn toggle" data-toggle="still" aria-pressed="false">
-              <span data-i18n="a11yMotion">Pausar animações</span><span class="state" aria-hidden="true">[ ]</span>
+              <span data-i18n="a11yMotion">Pause animations</span><span class="state" aria-hidden="true">[ ]</span>
             </button>
             <button type="button" class="tbtn toggle" data-toggle="crt" aria-pressed="true">
-              <span data-i18n="a11yCrt">Efeito CRT (scanlines)</span><span class="state" aria-hidden="true">[x]</span>
+              <span data-i18n="a11yCrt">CRT effect (scanlines)</span><span class="state" aria-hidden="true">[x]</span>
             </button>
-            <button type="button" class="tbtn a11y-reset" id="a11y-reset" data-i18n="a11yReset">restaurar padrão</button>
+            <button type="button" class="tbtn a11y-reset" id="a11y-reset" data-i18n="a11yReset">reset to default</button>
           </div>
         </div>
       </div>
@@ -335,13 +344,13 @@
     <ul class="tags" style="list-style:none;margin:0;padding:0">
       <li class="tag on">DEVELOPER</li>
       <li class="tag">QA</li>
-      <li class="tag" data-i18n="tagCreator">CRIADOR DE CONTEÚDO</li>
+      <li class="tag" data-i18n="tagCreator">CONTENT CREATOR</li>
       <li class="tag">CURITIBA, PR</li>
     </ul>
-    <p class="lead" data-i18n="heroLead">Desenvolvedor e QA de dia, jogador de Rainbow Six Siege e criador de conteúdo de gameplay no tempo livre. Construo coisas que funcionam de verdade, no código e na live.</p>
+    <p class="lead" data-i18n="heroLead">Developer and QA by day, Rainbow Six Siege player and gameplay content creator in my free time. I build things that actually work, in the code and on stream.</p>
     <div class="btns">
-      <a class="btn solid" href="#projetos" data-i18n="ctaProjects">./ver_projetos.sh</a>
-      <a class="btn" href="https://express.adobe.com/publishedV2/urn:aaid:sc:US:f877095e-0457-5854-8889-a09675451264?promoid=Y69SGM5H&amp;sdid=C4SZ2FYJ&amp;mv=other" target="_blank" rel="noopener"><span data-i18n="ctaCv">cat curriculo.pdf</span><span class="sr-only" data-i18n="newTab"> (abre em nova aba)</span></a>
+      <a class="btn solid" href="#projetos" data-i18n="ctaProjects">./see_projects.sh</a>
+      <a class="btn" href="https://express.adobe.com/publishedV2/urn:aaid:sc:US:f877095e-0457-5854-8889-a09675451264?promoid=Y69SGM5H&amp;sdid=C4SZ2FYJ&amp;mv=other" target="_blank" rel="noopener"><span data-i18n="ctaCv">cat resume.pdf</span><span class="sr-only" data-i18n="newTab"> (opens in a new tab)</span></a>
     </div>
     <div class="compiling" aria-hidden="true">&gt; <span id="typed">compilando alguma coisa</span><span class="cursor"></span></div>
   </section>
@@ -359,20 +368,20 @@
 
   <!-- SOBRE -->
   <section id="sobre" class="block" aria-labelledby="h-sobre">
-    <div class="kicker" aria-hidden="true" data-i18n="k1">// 01 SOBRE</div>
-    <h2 id="h-sobre" data-i18n="h1">Quem manja do que tá rolando</h2>
+    <div class="kicker" aria-hidden="true" data-i18n="k1">// 01 ABOUT</div>
+    <h2 id="h-sobre" data-i18n="h1">Someone who knows what’s going on</h2>
     <div class="about">
       <div class="about-text">
-        <p data-i18n="about1">Trabalho com suporte técnico e entrega de projetos, transitando entre sistemas backend (Java, Spring Boot, Oracle) e infraestrutura de coleções digitais (Omeka S, IIIF/Mirador). No dia a dia também mantenho repositórios via SVN e apoio times de Sustentação, Infraestrutura e Desenvolvimento.</p>
-        <p data-i18n="about2">Fora do expediente, o teclado não descansa: viro streamer/criador de conteúdo de CS2, edito vídeo no DaVinci Resolve e, de vez em quando, troco o mouse pelo violão pra tocar um sertanejo.</p>
+        <p data-i18n="about1">I work in technical support and project delivery, moving between backend systems (Java, Spring Boot, Oracle) and digital collections infrastructure (Omeka S, IIIF/Mirador). Day to day I also maintain SVN repositories and support the Sustaining, Infrastructure and Development teams.</p>
+        <p data-i18n="about2">After hours the keyboard doesn’t rest: I stream and create CS2 content, edit video in DaVinci Resolve and, every now and then, swap the mouse for a guitar to play some sertanejo.</p>
       </div>
       <div class="panel">
         <div class="panel-bar" aria-hidden="true"><span>$ neofetch --mini</span></div>
         <dl class="facts">
-          <dt>base</dt><dd data-i18n="factBase">Curitiba, PR, Brasil</dd>
+          <dt>base</dt><dd data-i18n="factBase">Curitiba, PR, Brazil</dd>
           <dt>time</dt><dd>Wise System</dd>
           <dt>main_game</dt><dd>Rainbow Six Siege</dd>
-          <dt>shell</dt><dd data-i18n="factShell">bash + café</dd>
+          <dt>shell</dt><dd data-i18n="factShell">bash + coffee</dd>
         </dl>
       </div>
     </div>
@@ -380,10 +389,10 @@
 
   <!-- PROJETOS -->
   <section id="projetos" class="block" aria-labelledby="h-proj">
-    <div class="kicker" aria-hidden="true" data-i18n="k2">// 02 PROJETOS</div>
+    <div class="kicker" aria-hidden="true" data-i18n="k2">// 02 PROJECTS</div>
     <div class="row-between">
-      <h2 id="h-proj" data-i18n="h2">Coisas que eu construí</h2>
-      <span class="hint" aria-hidden="true" data-i18n="projHint">$ ls ~/projetos | wc -l → 6</span>
+      <h2 id="h-proj" data-i18n="h2">Things I’ve built</h2>
+      <span class="hint" aria-hidden="true" data-i18n="projHint">$ ls ~/projects | wc -l → 6</span>
     </div>
     <ul class="grid">
 
@@ -396,23 +405,23 @@
 &gt; _</pre>
         <div class="card-body">
           <h3>ClipMaster for Linux</h3>
-          <p data-i18n="p1">Ferramenta pra quem vive no terminal e cansou de perder o que copiou: gerenciador de área de transferência feito pra Linux.</p>
+          <p data-i18n="p1">For people who live in the terminal and are tired of losing what they copied: a clipboard manager built for Linux.</p>
           <div class="card-tags">[typescript] [linux]</div>
-          <a class="card-link" href="https://github.com/itsbravos/ClipMaster-for-Linux" target="_blank" rel="noopener">→ git clone ClipMaster-for-Linux<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+          <a class="card-link" href="https://github.com/itsbravos/ClipMaster-for-Linux" target="_blank" rel="noopener">→ git clone ClipMaster-for-Linux<span class="sr-only" data-i18n="repoSr"> — GitHub repository (opens in a new tab)</span></a>
         </div>
       </article></li>
 
       <li><article class="panel card">
         <div class="panel-bar" aria-hidden="true"><span>┌─ financio/</span><span>02/06</span></div>
-<pre class="card-art" aria-hidden="true" data-i18n="art2">mercado    ########....
-transporte ####........
-lazer      ######......
-orçamento  [==========]</pre>
+<pre class="card-art" aria-hidden="true" data-i18n="art2">groceries  ########....
+transport  ####........
+fun        ######......
+budget     [==========]</pre>
         <div class="card-body">
           <h3>Financio</h3>
-          <p data-i18n="p2">App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.</p>
-          <div class="card-tags" data-i18n="t2">[typescript] [multi-conta]</div>
-          <a class="card-link" href="https://github.com/itsbravos/Financio" target="_blank" rel="noopener">→ git clone Financio<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+          <p data-i18n="p2">Personal finance app with expense categories and monthly budgets, designed to run on desktop and mobile.</p>
+          <div class="card-tags" data-i18n="t2">[typescript] [multi-account]</div>
+          <a class="card-link" href="https://github.com/itsbravos/Financio" target="_blank" rel="noopener">→ git clone Financio<span class="sr-only" data-i18n="repoSr"> — GitHub repository (opens in a new tab)</span></a>
         </div>
       </article></li>
 
@@ -424,9 +433,9 @@ orçamento  [==========]</pre>
   ok    ok     ??</pre>
         <div class="card-body">
           <h3>NetScan Linux</h3>
-          <p data-i18n="p3">Painel de varredura e monitoramento de rede pra Linux, com autenticação de administrador protegendo o acesso.</p>
-          <div class="card-tags" data-i18n="t3">[typescript] [rede]</div>
-          <a class="card-link" href="https://github.com/itsbravos/NetScan-Linux" target="_blank" rel="noopener">→ git clone NetScan-Linux<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+          <p data-i18n="p3">Network scanning and monitoring dashboard for Linux, with admin authentication guarding access.</p>
+          <div class="card-tags" data-i18n="t3">[typescript] [network]</div>
+          <a class="card-link" href="https://github.com/itsbravos/NetScan-Linux" target="_blank" rel="noopener">→ git clone NetScan-Linux<span class="sr-only" data-i18n="repoSr"> — GitHub repository (opens in a new tab)</span></a>
         </div>
       </article></li>
 
@@ -438,38 +447,38 @@ orçamento  [==========]</pre>
  .-----------.  lock: on</pre>
         <div class="card-body">
           <h3>VaultSecure</h3>
-          <p data-i18n="p4">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem, o controle fica com você.</p>
-          <div class="card-tags" data-i18n="t4">[typescript] [segurança]</div>
-          <a class="card-link" href="https://github.com/itsbravos/VaultSecure" target="_blank" rel="noopener">→ git clone VaultSecure<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+          <p data-i18n="p4">Local password vault. Stores credentials securely without relying on a cloud service, so you stay in control.</p>
+          <div class="card-tags" data-i18n="t4">[typescript] [security]</div>
+          <a class="card-link" href="https://github.com/itsbravos/VaultSecure" target="_blank" rel="noopener">→ git clone VaultSecure<span class="sr-only" data-i18n="repoSr"> — GitHub repository (opens in a new tab)</span></a>
         </div>
       </article></li>
 
       <li><article class="panel card">
         <div class="panel-bar" aria-hidden="true"><span>┌─ comparaja/</span><span>05/06</span></div>
-<pre class="card-art" aria-hidden="true" data-i18n="art5">loja_a  R$ ---,--
-loja_b  R$ ---,--  &lt;- menor
-loja_c  R$ ---,--
-frete   [calculando...]</pre>
+<pre class="card-art" aria-hidden="true" data-i18n="art5">store_a  R$ ---,--
+store_b  R$ ---,--  &lt;- lowest
+store_c  R$ ---,--
+shipping [calculating...]</pre>
         <div class="card-body">
           <h3>ComparaJá</h3>
-          <p data-i18n="p5">Comparador de preços entre lojas com IA, achando a melhor oferta, cupom e frete pra cada produto. Ainda em desenvolvimento, hoje é um protótipo funcional.</p>
-          <div class="card-tags" data-i18n="t5">[typescript] [protótipo]</div>
-          <a class="card-link" href="https://github.com/itsbravos/ComparaJ-" target="_blank" rel="noopener">→ git clone ComparaJ-<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+          <p data-i18n="p5">AI-powered price comparison across stores, finding the best deal, coupon and shipping for each product. Still in development; currently a working prototype.</p>
+          <div class="card-tags" data-i18n="t5">[typescript] [prototype]</div>
+          <a class="card-link" href="https://github.com/itsbravos/ComparaJ-" target="_blank" rel="noopener">→ git clone ComparaJ-<span class="sr-only" data-i18n="repoSr"> — GitHub repository (opens in a new tab)</span></a>
         </div>
       </article></li>
 
       <li><article class="panel card">
         <div class="panel-bar" aria-hidden="true"><span>┌─ sticky-notes/</span><span>06/06</span></div>
 <pre class="card-art" aria-hidden="true" data-i18n="art6">+-------+     +-------+
-| ideia |----&gt;| todo  |
+| idea  |----&gt;| todo  |
 +-------+     +-------+
                   |
               +-------+</pre>
         <div class="card-body">
           <h3>Sticky Notes</h3>
-          <p data-i18n="p6">App de notas adesivas 100% client-side: canvas livre, modo árvore pra mapa mental, conexões entre notas e pastas, tudo sem servidor.</p>
+          <p data-i18n="p6">100% client-side sticky notes app: free canvas, tree mode for mind maps, links between notes and folders, no server needed.</p>
           <div class="card-tags">[typescript] [react]</div>
-          <a class="card-link" href="https://github.com/itsbravos/sticky-notes" target="_blank" rel="noopener">→ git clone sticky-notes<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+          <a class="card-link" href="https://github.com/itsbravos/sticky-notes" target="_blank" rel="noopener">→ git clone sticky-notes<span class="sr-only" data-i18n="repoSr"> — GitHub repository (opens in a new tab)</span></a>
         </div>
       </article></li>
 
@@ -479,7 +488,7 @@ frete   [calculando...]</pre>
   <!-- STACK -->
   <section id="stack" class="block" aria-labelledby="h-stack">
     <div class="kicker" aria-hidden="true">// 03 STACK</div>
-    <h2 id="h-stack" data-i18n="h3">Com o que eu trabalho</h2>
+    <h2 id="h-stack" data-i18n="h3">What I work with</h2>
 <pre class="panel tree" aria-hidden="true">~/stack
 ├── <span class="d">backend/</span>
 │   ├── java
@@ -491,7 +500,7 @@ frete   [calculando...]</pre>
 │   ├── css3
 │   ├── javascript
 │   └── typescript
-└── <span class="d" data-i18n="treeTools">ferramentas/</span>
+└── <span class="d" data-i18n="treeTools">tools/</span>
     ├── git
     ├── svn
     ├── linux
@@ -502,14 +511,14 @@ frete   [calculando...]</pre>
     <div class="sr-only">
       <h3>Backend</h3><ul><li>Java</li><li>Spring Boot</li><li>PHP</li><li>Oracle</li></ul>
       <h3>Frontend</h3><ul><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>TypeScript</li></ul>
-      <h3 data-i18n="srTools">Ferramentas</h3><ul><li>Git</li><li>SVN</li><li>Linux</li><li>VS Code</li></ul>
+      <h3 data-i18n="srTools">Tools</h3><ul><li>Git</li><li>SVN</li><li>Linux</li><li>VS Code</li></ul>
     </div>
   </section>
 
   <!-- FORA DO TECLADO -->
   <section id="fora" class="block" aria-labelledby="h-fora">
-    <div class="kicker" aria-hidden="true" data-i18n="k4">// 04 FORA DO TECLADO</div>
-    <h2 id="h-fora" data-i18n="h4">Quando o VS Code fecha</h2>
+    <div class="kicker" aria-hidden="true" data-i18n="k4">// 04 OFF THE KEYBOARD</div>
+    <h2 id="h-fora" data-i18n="h4">When VS Code closes</h2>
     <div class="hobbies">
       <div class="hobby">
 <pre aria-hidden="true">  ___________
@@ -522,8 +531,8 @@ frete   [calculando...]</pre>
       ) (
     _.' '._
    '-------'</pre>
-        <h3 data-i18n="hob1t">Platinando jogos</h3>
-        <p data-i18n="hob1d">Sempre atrás da platina, caçando troféu por troféu até fechar o jogo 100%.</p>
+        <h3 data-i18n="hob1t">Platinum hunting</h3>
+        <p data-i18n="hob1d">Always chasing the platinum, trophy after trophy until the game is 100%.</p>
       </div>
       <div class="hobby">
 <pre aria-hidden="true">
@@ -535,8 +544,8 @@ frete   [calculando...]</pre>
  '-------------------'
    |||  davinci  |||
 </pre>
-        <h3 data-i18n="hob2t">Conteúdo de gameplay</h3>
-        <p data-i18n="hob2d">Gravo e edito vídeo de gameplay no DaVinci Resolve pro YouTube.</p>
+        <h3 data-i18n="hob2t">Gameplay content</h3>
+        <p data-i18n="hob2d">I record and edit gameplay videos in DaVinci Resolve for YouTube.</p>
       </div>
       <div class="hobby">
 <pre aria-hidden="true">        _
@@ -549,20 +558,20 @@ frete   [calculando...]</pre>
    |  ( o )  |
     \  |=|  /
      '-...-'</pre>
-        <h3 data-i18n="hob3t">Tocando instrumentos</h3>
-        <p data-i18n="hob3d">Nas horas vagas, é sertanejo no violão.</p>
+        <h3 data-i18n="hob3t">Playing music</h3>
+        <p data-i18n="hob3d">In my spare time, it’s sertanejo on the guitar.</p>
       </div>
     </div>
   </section>
 
   <!-- CONTATO -->
   <section id="contato" class="block" aria-labelledby="h-contato">
-    <div class="kicker" aria-hidden="true" data-i18n="k5">// 05 CONTATO</div>
-    <h2 id="h-contato" data-i18n="h5">Bora trocar uma ideia</h2>
-    <p class="lead" style="font-size:.9375rem" data-i18n="contactLead">GitHub, LinkedIn, Instagram, Steam ou e-mail, escolhe o canal.</p>
+    <div class="kicker" aria-hidden="true" data-i18n="k5">// 05 CONTACT</div>
+    <h2 id="h-contato" data-i18n="h5">Let’s talk</h2>
+    <p class="lead" style="font-size:.9375rem" data-i18n="contactLead">GitHub, LinkedIn, Instagram, Steam or email, pick your channel.</p>
     <div class="panel">
       <div class="term">
-        <div class="prompt" aria-hidden="true"><span class="u">italo@bravos</span><span class="s">:~$</span> <span data-i18n="lsContact">ls ~/contato</span></div>
+        <div class="prompt" aria-hidden="true"><span class="u">italo@bravos</span><span class="s">:~$</span> <span data-i18n="lsContact">ls ~/contact</span></div>
         <ul style="list-style:none;margin:0;padding:0">
           <li><a href="https://github.com/itsbravos" target="_blank" rel="noopener"><span class="k">github</span>github.com/itsbravos</a></li>
           <li><a href="https://www.linkedin.com/in/italobravos/" target="_blank" rel="noopener"><span class="k">linkedin</span>in/italobravos</a></li>
@@ -581,13 +590,7 @@ frete   [calculando...]</pre>
 <footer>
   <div class="wrap">
     <span>© 2026 Ítalo Victor Bravos — [ EOF ]</span>
-    <div class="themes" role="group" aria-label="Cor do terminal" data-i18n-aria="themeLabel">
-      <span aria-hidden="true">theme:</span>
-      <button type="button" class="tbtn" data-set="green">green</button>
-      <button type="button" class="tbtn" data-set="amber">amber</button>
-      <button type="button" class="tbtn" data-set="cyan">cyan</button>
-      <button type="button" class="tbtn" data-set="pink">pink</button>
-    </div>
+    <a href="#topo" data-i18n="backTop">↑ cd ~ (back to top)</a>
   </div>
 </footer>
 
@@ -641,6 +644,7 @@ frete   [calculando...]</pre>
       contactLead: 'GitHub, LinkedIn, Instagram, Steam ou e-mail, escolhe o canal.', lsContact: 'ls ~/contato',
       typed: ['compilando alguma coisa', 'rodando os testes de QA', 'renderizando gameplay no davinci', 'afinando o violão', 'git commit -m "mais um projeto"'],
       login: 'Último login', loc: 'curitiba, pr',
+      backTop: '↑ cd ~ (voltar ao topo)',
       changedLang: 'Idioma alterado para português'
     },
     en: {
@@ -681,6 +685,7 @@ frete   [calculando...]</pre>
       contactLead: 'GitHub, LinkedIn, Instagram, Steam or email, pick your channel.', lsContact: 'ls ~/contact',
       typed: ['compiling something', 'running the QA tests', 'rendering gameplay in davinci', 'tuning the guitar', 'git commit -m "one more project"'],
       login: 'Last login', loc: 'curitiba, br',
+      backTop: '↑ cd ~ (back to top)',
       changedLang: 'Language changed to English'
     }
   };
@@ -813,9 +818,7 @@ frete   [calculando...]</pre>
   setToggle('still', store.get('itsbravos-still') === '1');
   setToggle('crt', store.get('itsbravos-crt') !== '0');
 
-  var saved = store.get('itsbravos-lang');
-  var browser = (navigator.language || 'pt').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
-  setLang(saved || browser, false);
+  setLang(store.get('itsbravos-lang') || 'en', false);
 })();
 </script>
 </body>
