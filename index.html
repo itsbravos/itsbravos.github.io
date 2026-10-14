@@ -1,894 +1,820 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ítalo Bravos, dev, gamer, criador</title>
 <meta name="description" content="Portfólio de Ítalo Victor Bravos, desenvolvedor, QA e criador de conteúdo.">
+<title>Ítalo Bravos, dev, gamer, criador</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#4C8EF0;
-    --bg-deep:#3D74D6;
-    --panel:#FBF4DE;
-    --panel-alt:#FFFFFF;
-    --ink:#171814;
-    --gold:#FFD84D;
-    --orange:#FF6B57;
-    --lavender:#CBC0F5;
-    --mint:#BDEFD6;
-    --text:#171814;
-    --text-on-blue:#FBF4DE;
-    --text-muted:#6B6653;
-    --text-muted-on-blue:#DCE7FB;
-    --radius:18px;
-    --stroke:3px;
-    --shadow-off:5px;
+  :root {
+    --bg: #0b0d0a;
+    --panel: #0f130d;
+    --line: #2c3a28;
+    --line-2: #3b4a36;
+    --text: #b9c7b0;
+    --text-2: #c9d6c1;
+    --bright: #eef6e8;
+    --muted: #7d8d76;
+    --dim-art: #3f5a37;
+    --link: #d7ffc4;
+    --path: #8fb8ff;
+    --accent: #9fe870;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --body-font: var(--mono);
+  }
+  html[data-accent="amber"] { --accent: #ffb000; --dim-art: #5e4a1c; --link: #ffe2a8; }
+  html[data-accent="cyan"]  { --accent: #5fd7ff; --dim-art: #2a4d5a; --link: #c9f1ff; }
+  html[data-accent="pink"]  { --accent: #ff6ad5; --dim-art: #5a2a4e; --link: #ffd0f1; }
+
+  /* ---------- acessibilidade ---------- */
+  html[data-size="lg"] { font-size: 112.5%; }
+  html[data-size="xl"] { font-size: 125%; }
+  html.contrast {
+    --bg: #000; --panel: #000; --line: #8a9a83; --line-2: #b9c7b0;
+    --text: #fff; --text-2: #fff; --bright: #fff; --muted: #d0d8cc; --link: #fff;
+    --dim-art: var(--accent);
+  }
+  html.contrast a { text-decoration: underline; text-underline-offset: 3px; }
+  html.readable { --body-font: 'Atkinson Hyperlegible', system-ui, sans-serif; }
+  html.readable body { letter-spacing: .01em; line-height: 1.75; }
+  html.still *, html.still *::before, html.still *::after {
+    animation: none !important; transition: none !important; scroll-behavior: auto !important;
+  }
+  html.still .card:hover { transform: none; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body-font);
+    font-size: .9375rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { color: #fff; text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  pre, .mono { font-family: var(--mono); margin: 0; }
+  h1, h2, h3 { color: var(--bright); margin: 0; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .skip {
+    position: absolute; left: 16px; top: -100px; z-index: 100;
+    background: var(--accent); color: var(--bg); padding: 10px 16px; font-weight: 700;
+  }
+  .skip:focus { top: 12px; }
+
+  /* scanlines CRT */
+  body.crt::after {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px);
+    z-index: 50;
+  }
+  html.contrast body.crt::after { display: none; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* header */
+  .top {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px dashed var(--line);
+  }
+  .top .wrap {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 10px 24px; padding-top: 14px; padding-bottom: 14px;
+  }
+  .brand { color: var(--accent); font-weight: 800; letter-spacing: .08em; font-family: var(--mono); }
+  .nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: .875rem; }
+  .nav .n { color: var(--muted); font-family: var(--mono); }
+  .tools { display: flex; align-items: center; gap: 8px; font-family: var(--mono); }
+  .tbtn {
+    font: inherit; font-size: .8125rem; color: var(--text-2);
+    background: none; border: 1px solid var(--line-2);
+    min-height: 36px; padding: 0 10px; cursor: pointer;
+  }
+  .tbtn:hover { border-color: var(--accent); color: var(--accent); }
+  .tbtn[aria-pressed="true"], .tbtn[aria-expanded="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .lang { display: inline-flex; }
+  .lang .tbtn + .tbtn { border-left: 0; }
+
+  /* painel de acessibilidade */
+  .a11y-wrap { position: relative; }
+  .a11y {
+    position: absolute; right: 0; top: calc(100% + 10px); z-index: 30;
+    width: min(320px, calc(100vw - 32px));
+    background: var(--panel); border: 1px solid var(--accent);
+    box-shadow: 0 12px 40px rgba(0,0,0,.6);
+    font-family: var(--mono);
+  }
+  .a11y[hidden] { display: none; }
+  .a11y-head { padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: .75rem; color: var(--muted); }
+  .a11y-body { padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+  .a11y-row { display: flex; flex-direction: column; gap: 6px; }
+  .a11y-row > span { font-size: .8125rem; color: var(--bright); }
+  .seg { display: flex; }
+  .seg .tbtn { flex: 1; min-height: 40px; }
+  .seg .tbtn + .tbtn { border-left: 0; }
+  .toggle {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    width: 100%; text-align: left; min-height: 44px;
+  }
+  .toggle .state { font-size: .75rem; }
+  .a11y-reset { align-self: flex-start; color: var(--muted); }
+
+  /* prompt */
+  .prompt { font-size: .9375rem; font-family: var(--mono); }
+  .prompt .u { color: var(--accent); }
+  .prompt .s { color: var(--muted); }
+  .prompt .p { color: var(--path); }
+  .cursor {
+    display: inline-block; width: .6em; height: 1.1em; vertical-align: -.2em;
+    background: var(--accent); margin-left: 6px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* hero */
+  .hero { padding: 72px 0 56px; display: flex; flex-direction: column; gap: 26px; }
+  .login { font-size: .875rem; color: var(--muted); font-family: var(--mono); }
+  .ascii {
+    color: var(--accent);
+    line-height: 1.05;
+    font-size: clamp(5px, 1.35vw, 18px);
+    overflow-x: auto;
+    text-shadow: 0 0 12px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; font-weight: 800; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px 12px; font-size: .8125rem; letter-spacing: .06em; font-family: var(--mono); }
+  .tag { border: 1px solid var(--line-2); padding: 1px 10px; color: var(--link); }
+  .tag.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .lead { margin: 0; max-width: 680px; font-size: 1.0625rem; color: var(--text-2); }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--mono); }
+  .btn {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px;
+    border: 1px solid var(--accent); color: var(--accent);
+  }
+  .btn.solid { background: var(--accent); color: var(--bg); font-weight: 600; }
+  .btn:hover { text-decoration: none; filter: brightness(1.15); }
+  .compiling { font-size: .875rem; color: var(--muted); font-family: var(--mono); }
+
+  /* ticker */
+  .ticker {
+    border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line);
+    padding: 10px 0; font-size: .8125rem; color: var(--muted); font-family: var(--mono);
+    overflow: hidden; white-space: nowrap;
+  }
+  .ticker-track { display: inline-block; animation: scroll 40s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* seções */
+  section.block { padding: 72px 0 32px; display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 80px; }
+  .kicker { font-size: .8125rem; color: var(--accent); letter-spacing: .1em; white-space: nowrap; overflow: hidden; font-family: var(--mono); }
+  .kicker::after { content: " ────────────────────────────────────────────────────────────"; color: var(--line-2); }
+  h2 { font-size: clamp(1.5rem, 3.2vw, 2.25rem); line-height: 1.2; }
+  .row-between { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
+  .hint { font-size: .8125rem; color: var(--muted); font-family: var(--mono); }
+
+  .panel { border: 1px solid var(--line); background: var(--panel); }
+  .panel-bar {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 8px 14px; border-bottom: 1px solid var(--line);
+    font-size: .75rem; color: var(--muted); font-family: var(--mono);
   }
 
-  *{margin:0;padding:0;box-sizing:border-box;}
+  /* sobre */
+  .about { display: flex; flex-wrap: wrap; gap: 32px; }
+  .about-text { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px; color: var(--text-2); }
+  .about-text p { margin: 0; }
+  .about .panel { flex: 1 1 300px; min-width: 0; }
+  .facts { margin: 0; padding: 16px 14px; display: grid; grid-template-columns: 110px 1fr; gap: 8px 12px; font-size: .875rem; }
+  .facts dt { color: var(--accent); font-family: var(--mono); }
+  .facts dd { margin: 0; color: var(--bright); }
 
-  html{scroll-behavior:smooth;}
+  /* projetos */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; }
+  .card { display: flex; flex-direction: column; height: 100%; transition: border-color .15s, transform .15s; }
+  .card:hover, .card:focus-within { border-color: var(--accent); }
+  .card:hover { transform: translateY(-2px); }
+  .card-art {
+    padding: 18px 14px; font-size: .75rem; line-height: 1.25;
+    color: var(--dim-art); border-bottom: 1px dashed var(--line);
+    overflow: hidden; min-height: 112px;
+    transition: color .15s;
+  }
+  .card:hover .card-art, .card:focus-within .card-art { color: var(--accent); }
+  .card-body { padding: 16px 14px 14px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+  .card-body h3 { font-size: 1.125rem; }
+  .card-body p { margin: 0; font-size: .875rem; flex-grow: 1; }
+  .card-tags { font-size: .75rem; color: var(--accent); font-family: var(--mono); }
+  .card-link { display: inline-flex; align-items: center; min-height: 44px; font-size: .875rem; font-family: var(--mono); }
 
-  body{
-    background:var(--bg);
-    color:var(--text-on-blue);
-    font-family:'DM Sans',sans-serif;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
+  /* stack */
+  .tree { padding: 24px; font-size: .9375rem; line-height: 1.8; color: var(--text-2); overflow-x: auto; }
+  .tree .d { color: var(--accent); font-weight: 600; }
+  .tree .m { color: var(--muted); }
 
-  h1,h2,h3,.display{
-    font-family:'Baloo 2',sans-serif;
-    letter-spacing:0.01em;
-    font-weight:700;
-  }
+  /* fora */
+  .hobbies { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px; }
+  .hobby { border: 1px solid var(--line); padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .hobby pre { font-size: .8125rem; line-height: 1.15; color: var(--accent); min-height: 150px; }
+  .hobby h3 { font-size: 1.0625rem; }
+  .hobby p { margin: 0; font-size: .875rem; }
 
-  .mono{font-family:'JetBrains Mono',monospace;}
+  /* contato */
+  .term { padding: 20px 24px; display: flex; flex-direction: column; gap: 4px; font-size: .9375rem; font-family: var(--mono); list-style: none; margin: 0; }
+  .term a { display: flex; align-items: center; min-height: 44px; gap: 16px; word-break: break-all; }
+  .term a .k { color: var(--muted); width: 100px; flex-shrink: 0; }
 
-  a{color:inherit;text-decoration:none;}
+  /* footer */
+  footer { border-top: 1px dashed var(--line); margin-top: 40px; }
+  footer .wrap {
+    padding-top: 20px; padding-bottom: 32px;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
+    font-size: .75rem; color: var(--muted); font-family: var(--mono);
+  }
+  .themes { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .themes .tbtn { min-height: 36px; font-size: .75rem; }
 
-  :focus-visible{
-    outline:3px solid var(--ink);
-    outline-offset:3px;
+  @media (max-width: 720px) {
+    .hero { padding-top: 48px; }
+    .facts { grid-template-columns: 96px 1fr; }
+    .term a .k { width: 80px; }
+    .top .wrap { justify-content: flex-start; }
+    .tools { margin-left: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor, .ticker-track { animation: none; }
+    html { scroll-behavior: auto; }
+    .card:hover { transform: none; }
   }
-
-  /* hard offset "card stack" shadow used across the page — echoes a flashcard peeking out from behind another */
-  .hard{
-    border:var(--stroke) solid var(--ink);
-    box-shadow:var(--shadow-off) var(--shadow-off) 0 0 var(--ink);
-  }
-
-  .wrap{
-    max-width:1080px;
-    margin:0 auto;
-    padding:0 24px;
-  }
-
-  /* ---------- NAV ---------- */
-  nav{
-    position:sticky;
-    top:0;
-    z-index:50;
-    background:var(--panel);
-    border-bottom:var(--stroke) solid var(--ink);
-  }
-  nav .wrap{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:14px 24px;
-  }
-  .logo{
-    font-family:'Baloo 2',sans-serif;
-    font-weight:800;
-    font-size:1.35rem;
-    letter-spacing:0.01em;
-    color:var(--ink);
-  }
-  .logo span{
-    color:var(--panel);
-    background:var(--ink);
-    padding:0 6px;
-    border-radius:6px;
-  }
-  .nav-links{
-    display:flex;
-    gap:24px;
-    font-size:0.9rem;
-    font-weight:600;
-  }
-  .nav-links a{
-    color:var(--text-muted);
-    transition:color 0.15s;
-  }
-  .nav-links a:hover{color:var(--ink);}
-
-  @media (max-width:640px){
-    .nav-links{gap:14px;font-size:0.76rem;}
-  }
-
-  /* ---------- HERO ---------- */
-  header.hero{
-    padding:100px 0 80px;
-    position:relative;
-    border-bottom:var(--stroke) solid var(--ink);
-    background:
-      radial-gradient(circle at 12% 15%, rgba(255,255,255,0.12), transparent 40%),
-      radial-gradient(circle at 88% 70%, rgba(255,255,255,0.08), transparent 45%),
-      var(--bg);
-    overflow:hidden;
-  }
-
-  .tag-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:26px;
-  }
-  .tag{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:700;
-    font-size:0.72rem;
-    padding:6px 12px;
-    border:2.5px solid var(--ink);
-    border-radius:999px;
-    background:var(--panel);
-    color:var(--ink);
-    letter-spacing:0.03em;
-  }
-
-  header.hero h1{
-    font-size:clamp(2.8rem,7vw,4.8rem);
-    line-height:0.96;
-    margin-bottom:20px;
-    color:var(--text-on-blue);
-    text-shadow:3px 3px 0 var(--ink);
-  }
-  header.hero h1 .accent{
-    color:var(--gold);
-    -webkit-text-stroke:2px var(--ink);
-    paint-order:stroke fill;
-  }
-
-  .hero-sub{
-    max-width:520px;
-    color:var(--text-muted-on-blue);
-    font-size:1.08rem;
-    margin-bottom:30px;
-    font-weight:500;
-  }
-
-  .status-line{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    font-family:'JetBrains Mono',monospace;
-    font-weight:500;
-    font-size:0.85rem;
-    color:var(--ink);
-    background:var(--panel);
-    border:var(--stroke) solid var(--ink);
-    box-shadow:4px 4px 0 0 var(--ink);
-    border-radius:999px;
-    padding:10px 18px;
-  }
-  .status-inner{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-  }
-  .status-dot{
-    width:9px;height:9px;border-radius:50%;
-    background:var(--orange);
-    border:1.5px solid var(--ink);
-    box-shadow:0 0 0 0 rgba(255,107,87,0.6);
-    animation:pulse 2s infinite;
-  }
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(255,107,87,0.5);}
-    70%{box-shadow:0 0 0 8px rgba(255,107,87,0);}
-    100%{box-shadow:0 0 0 0 rgba(255,107,87,0);}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .status-dot{animation:none;}
-    html{scroll-behavior:auto;}
-  }
-
-  /* ---------- REVEAL / ENTRANCE ANIMATIONS ---------- */
-  .reveal{
-    opacity:0;
-    transform:translateY(24px);
-    transition:opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.visible{
-    opacity:1;
-    transform:translateY(0);
-  }
-  @media (prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;transition:none;}
-  }
-
-  .hero-enter{
-    opacity:0;
-    transform:translateY(16px);
-    animation:heroEnter 0.7s ease forwards;
-  }
-  .hero-enter:nth-child(1){animation-delay:0.05s;}
-  .hero-enter:nth-child(2){animation-delay:0.18s;}
-  .hero-enter:nth-child(3){animation-delay:0.31s;}
-  .hero-enter:nth-child(4){animation-delay:0.44s;}
-  @keyframes heroEnter{
-    to{opacity:1;transform:translateY(0);}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .hero-enter{animation:none;opacity:1;transform:none;}
-  }
-
-  .float{
-    animation:floaty 5s ease-in-out infinite;
-  }
-  @keyframes floaty{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .float{animation:none;}
-  }
-
-  /* ---------- SECTION HEADS ---------- */
-  section{padding:76px 0;border-bottom:var(--stroke) solid var(--ink);background:var(--bg);}
-  section:nth-of-type(even){background:var(--bg-deep);}
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:700;
-    font-size:0.78rem;
-    color:var(--panel);
-    background:var(--ink);
-    display:inline-block;
-    padding:3px 10px;
-    border-radius:6px;
-    letter-spacing:0.08em;
-    margin-bottom:14px;
-  }
-  section h2{
-    font-size:clamp(1.9rem,4vw,2.5rem);
-    margin-bottom:36px;
-    color:var(--text-on-blue);
-    text-shadow:2px 2px 0 var(--ink);
-  }
-
-  /* ---------- SOBRE ---------- */
-  .about-grid{
-    display:grid;
-    grid-template-columns:1.3fr 1fr;
-    gap:48px;
-    align-items:start;
-  }
-  .about-grid p{color:var(--text-muted-on-blue);margin-bottom:16px;font-size:1rem;font-weight:500;}
-  .stat-box{
-    background:var(--panel);
-    border:var(--stroke) solid var(--ink);
-    box-shadow:5px 5px 0 0 var(--ink);
-    border-radius:14px;
-    padding:18px 20px;
-  }
-  .stat-box + .stat-box{margin-top:20px;}
-  .stat-box .label{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:700;
-    font-size:0.72rem;
-    color:var(--text-muted);
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-    margin-bottom:4px;
-  }
-  .stat-box .value{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1.2rem;color:var(--ink);}
-
-  @media (max-width:800px){
-    .about-grid{grid-template-columns:1fr;}
-  }
-
-  /* ---------- PROJETOS ---------- */
-  .project-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:32px 26px;
-  }
-  .project-card{
-    background:var(--panel);
-    border:var(--stroke) solid var(--ink);
-    border-radius:var(--radius);
-    padding:24px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    position:relative;
-    transition:transform 0.2s, box-shadow 0.2s;
-    box-shadow:6px 6px 0 0 var(--ink);
-  }
-  /* peeking cards behind — the signature "flashcard stack" */
-  .project-card::before,
-  .project-card::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border:var(--stroke) solid var(--ink);
-    border-radius:var(--radius);
-    z-index:-1;
-  }
-  .project-card::before{
-    background:var(--lavender);
-    transform:rotate(-3deg) translate(-2px,3px);
-  }
-  .project-card::after{
-    background:var(--mint);
-    transform:rotate(3deg) translate(3px,-3px);
-  }
-  .project-card:hover{
-    transform:translate(-3px,-3px);
-    box-shadow:9px 9px 0 0 var(--ink);
-  }
-  .project-thumb{
-    width:100%;
-    aspect-ratio:16/9;
-    border-radius:10px;
-    border:2.5px solid var(--ink);
-    overflow:hidden;
-    position:relative;
-  }
-  .project-thumb img{
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    filter:blur(0) brightness(1);
-    transform:scale(1);
-    transition:filter 0.4s ease, transform 0.4s ease;
-  }
-  .project-card:hover .project-thumb img{
-    filter:blur(7px) brightness(0.5);
-    transform:scale(1.08);
-  }
-  .thumb-overlay{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,0.15);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 0.35s ease;
-  }
-  .thumb-overlay svg{
-    width:38px;
-    height:38px;
-  }
-  .project-card:hover .thumb-overlay{
-    opacity:1;
-    pointer-events:auto;
-  }
-  .project-thumb svg{width:44px;height:44px;}
-  .thumb-vault{background:linear-gradient(135deg,#4C8EF0,#CBC0F5);}
-  .thumb-financio{background:linear-gradient(135deg,#FFD84D,#FF6B57);}
-  .thumb-clip{background:linear-gradient(135deg,#BDEFD6,#4C8EF0);}
-  .thumb-netscan{background:linear-gradient(135deg,#4C8EF0,#171814);}
-  .thumb-compara{background:linear-gradient(135deg,#BDEFD6,#171814);}
-  .thumb-sticky{background:linear-gradient(135deg,#FFD84D,#CBC0F5);}
-  .project-card .ptitle{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1.3rem;color:var(--ink);}
-  .project-card .pdesc{color:var(--text-muted);font-size:0.94rem;font-weight:500;flex-grow:1;}
-  .pill-row{display:flex;flex-wrap:wrap;gap:6px;}
-  .pill{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:700;
-    font-size:0.68rem;
-    padding:4px 10px;
-    border-radius:999px;
-    border:2px solid var(--ink);
-    background:var(--panel-alt);
-    color:var(--ink);
-  }
-  .pcta{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:700;
-    font-size:0.8rem;
-    color:var(--ink);
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-  }
-  .pcta:hover{color:var(--orange);}
-
-  /* ---------- STACK ---------- */
-  .stack-groups{display:flex;flex-direction:column;gap:26px;margin-top:36px;}
-  .stack-row{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;}
-  .stack-row .glabel{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:700;
-    font-size:0.75rem;
-    color:var(--gold);
-    min-width:110px;
-  }
-  .chip-row{display:flex;flex-wrap:wrap;gap:10px;}
-  .chip{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-size:0.85rem;
-    font-weight:600;
-    padding:7px 16px 7px 8px;
-    border:2.5px solid var(--ink);
-    border-radius:999px;
-    background:var(--panel);
-    color:var(--ink);
-  }
-  .chip .chip-icon{
-    width:22px;
-    height:22px;
-    border-radius:6px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-  }
-  .chip .chip-icon svg{
-    width:13px;
-    height:13px;
-  }
-
-  /* ---------- FORA DO TECLADO ---------- */
-  .off-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:18px;
-  }
-  .off-card{
-    background:var(--panel);
-    border:var(--stroke) solid var(--ink);
-    box-shadow:5px 5px 0 0 var(--ink);
-    border-radius:var(--radius);
-    padding:22px;
-    transition:transform 0.2s, box-shadow 0.2s;
-  }
-  .off-card:hover{
-    transform:translate(-2px,-2px);
-    box-shadow:7px 7px 0 0 var(--ink);
-  }
-  .off-card .emoji{font-size:1.6rem;margin-bottom:10px;display:block;}
-  .off-card h3{font-family:'Baloo 2',sans-serif;color:var(--ink);font-size:1.1rem;margin-bottom:6px;}
-  .off-card p{color:var(--text-muted);font-size:0.9rem;font-weight:500;}
-
-  /* ---------- CONTATO / FOOTER ---------- */
-  footer{padding:76px 0 50px;text-align:center;background:var(--bg-deep);border-bottom:none;}
-  footer h2{margin-bottom:12px;}
-  footer .hero-sub{margin:0 auto 30px;text-align:center;color:var(--text-muted-on-blue);}
-  .contact-row{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:14px;
-    margin-bottom:40px;
-  }
-  .contact-pill{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:700;
-    font-size:0.85rem;
-    padding:10px 22px;
-    border:var(--stroke) solid var(--ink);
-    box-shadow:4px 4px 0 0 var(--ink);
-    border-radius:999px;
-    background:var(--panel);
-    color:var(--ink);
-    transition:transform 0.15s, box-shadow 0.15s;
-  }
-  .contact-pill:hover{
-    transform:translate(-2px,-2px);
-    box-shadow:6px 6px 0 0 var(--ink);
-    color:var(--orange);
-  }
-  .resume-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    margin-top:8px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.88rem;
-    font-weight:700;
-    padding:13px 24px;
-    border-radius:999px;
-    border:var(--stroke) solid var(--ink);
-    box-shadow:5px 5px 0 0 var(--ink);
-    background:var(--gold);
-    color:var(--ink);
-    transition:transform 0.2s, box-shadow 0.2s;
-  }
-  .resume-btn:hover{
-    transform:translate(-2px,-2px);
-    box-shadow:7px 7px 0 0 var(--ink);
-  }
-
-  /* ---------- MARQUEE (STACK) ---------- */
-  .marquee{
-    width:100%;
-    overflow:hidden;
-    border-top:var(--stroke) solid var(--ink);
-    border-bottom:var(--stroke) solid var(--ink);
-    background:var(--panel);
-    padding:26px 0;
-    mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  }
-  .marquee-track{
-    display:flex;
-    width:max-content;
-    gap:56px;
-    animation:scrollLogos 39s linear infinite;
-  }
-  .marquee:hover .marquee-track{
-    animation-play-state:paused;
-  }
-  .tech-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-    opacity:0.85;
-    transition:opacity 0.2s, transform 0.2s;
-  }
-  .tech-item:hover{
-    opacity:1;
-    transform:translateY(-4px);
-  }
-  .tech-item img{
-    width:34px;
-    height:34px;
-  }
-  .tech-badge{
-    width:44px;
-    height:44px;
-    border-radius:10px;
-    border:2.5px solid var(--ink);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .tech-badge svg{
-    width:22px;
-    height:22px;
-  }
-  .tech-item span{
-    font-family:'JetBrains Mono',monospace;
-    font-weight:700;
-    font-size:0.7rem;
-    color:var(--ink);
-    white-space:nowrap;
-  }
-  @keyframes scrollLogos{
-    from{transform:translateX(0);}
-    to{transform:translateX(-33.3333%);}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .marquee{overflow-x:auto;}
-    .marquee-track{animation:none;}
-  }
-  .copyright{color:var(--text-muted-on-blue);font-size:0.78rem;font-family:'JetBrains Mono',monospace;font-weight:600;}
 </style>
 </head>
-<body>
+<body class="crt">
 
-<nav>
-  <div class="wrap">
-    <div class="logo">ITS<span>BRAVOS</span></div>
-    <div class="nav-links">
-      <a href="#sobre">Sobre</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#stack">Stack</a>
-      <a href="#fora">Fora do teclado</a>
-      <a href="#contato">Contato</a>
-    </div>
-  </div>
-</nav>
+<a class="skip" href="#conteudo" data-i18n="skip">Pular para o conteúdo</a>
 
-<header class="hero">
+<header class="top">
   <div class="wrap">
-    <div class="tag-row hero-enter">
-      <span class="tag">DEVELOPER</span>
-      <span class="tag">QA</span>
-      <span class="tag">CRIADOR DE CONTEÚDO</span>
-      <span class="tag">CURITIBA, PR</span>
-    </div>
-    <h1 class="hero-enter">Ítalo Victor<br><span class="accent">Bravos</span></h1>
-    <p class="hero-sub hero-enter">Desenvolvedor e QA de dia, jogador de Rainbow Six Siege e criador de conteúdo de gameplay no tempo livre. Construo coisas que funcionam de verdade, no código e na live.</p>
-    <div class="status-line hero-enter">
-      <span class="float status-inner">
-        <span class="status-dot"></span>
-        <span id="status-text">compilando alguma coisa</span>
-      </span>
+    <a href="#topo" class="brand" aria-label="itsbravos — início">[~/itsbravos]$</a>
+    <nav class="nav" aria-label="Seções" data-i18n-aria="navLabel">
+      <a href="#sobre"><span class="n" aria-hidden="true">01.</span><span data-i18n="nav1">sobre</span></a>
+      <a href="#projetos"><span class="n" aria-hidden="true">02.</span><span data-i18n="nav2">projetos</span></a>
+      <a href="#stack"><span class="n" aria-hidden="true">03.</span><span data-i18n="nav3">stack</span></a>
+      <a href="#fora"><span class="n" aria-hidden="true">04.</span><span data-i18n="nav4">fora_do_teclado</span></a>
+      <a href="#contato"><span class="n" aria-hidden="true">05.</span><span data-i18n="nav5">contato</span></a>
+    </nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Idioma" data-i18n-aria="langLabel">
+        <button type="button" class="tbtn" data-lang="pt" lang="pt-BR" aria-label="Português">PT</button>
+        <button type="button" class="tbtn" data-lang="en" lang="en" aria-label="English">EN</button>
+      </div>
+      <div class="a11y-wrap">
+        <button type="button" class="tbtn" id="a11y-btn" aria-expanded="false" aria-controls="a11y-panel">
+          <span aria-hidden="true">[a11y]</span><span class="sr-only" data-i18n="a11yBtn">Opções de acessibilidade</span>
+        </button>
+        <div class="a11y" id="a11y-panel" role="region" aria-labelledby="a11y-title" hidden>
+          <div class="a11y-head" id="a11y-title" data-i18n="a11yTitle">$ acessibilidade --config</div>
+          <div class="a11y-body">
+            <div class="a11y-row" role="group" aria-labelledby="lbl-size">
+              <span id="lbl-size" data-i18n="a11ySize">Tamanho do texto</span>
+              <div class="seg">
+                <button type="button" class="tbtn" data-size="md">A</button>
+                <button type="button" class="tbtn" data-size="lg" style="font-size:.9375rem">A+</button>
+                <button type="button" class="tbtn" data-size="xl" style="font-size:1.0625rem">A++</button>
+              </div>
+            </div>
+            <button type="button" class="tbtn toggle" data-toggle="contrast" aria-pressed="false">
+              <span data-i18n="a11yContrast">Alto contraste</span><span class="state" aria-hidden="true">[ ]</span>
+            </button>
+            <button type="button" class="tbtn toggle" data-toggle="readable" aria-pressed="false">
+              <span data-i18n="a11yReadable">Fonte de leitura fácil</span><span class="state" aria-hidden="true">[ ]</span>
+            </button>
+            <button type="button" class="tbtn toggle" data-toggle="still" aria-pressed="false">
+              <span data-i18n="a11yMotion">Pausar animações</span><span class="state" aria-hidden="true">[ ]</span>
+            </button>
+            <button type="button" class="tbtn toggle" data-toggle="crt" aria-pressed="true">
+              <span data-i18n="a11yCrt">Efeito CRT (scanlines)</span><span class="state" aria-hidden="true">[x]</span>
+            </button>
+            <button type="button" class="tbtn a11y-reset" id="a11y-reset" data-i18n="a11yReset">restaurar padrão</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
-<div class="marquee marquee-top">
+<main id="conteudo" tabindex="-1">
+<div class="wrap">
 
-    <div class="marquee-track">
-      <div class="tech-item"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M7.5 7h9l-.4 4H9.2l.2 2.2 2.6.8 2.6-.8.2-2"/></svg></div><span>HTML5</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M16 7H8l.3 3h7l-.4 4-3 1-3-1-.2-2"/></svg></div><span>CSS3</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3 1-3 3v2.5c0 1.2-.9 2-2 2.5 1.1.5 2 1.3 2 2.5V16c0 2 1 3 3 3"/><path d="M16 3c2 0 3 1 3 3v2.5c0 1.2.9 2 2 2.5-1.1.5-2 1.3-2 2.5V16c0 2-1 3-3 3"/></svg></div><span>JavaScript</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" fill="#fff" text-anchor="middle">TS</text></svg></div><span>TypeScript</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="15.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="8.5" fill="#fff" text-anchor="middle">PHP</text></svg></div><span>PHP</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
-      <div class="tech-item"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
-      <!-- duplicado pra loop continuo -->
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M7.5 7h9l-.4 4H9.2l.2 2.2 2.6.8 2.6-.8.2-2"/></svg></div><span>HTML5</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M16 7H8l.3 3h7l-.4 4-3 1-3-1-.2-2"/></svg></div><span>CSS3</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3 1-3 3v2.5c0 1.2-.9 2-2 2.5 1.1.5 2 1.3 2 2.5V16c0 2 1 3 3 3"/><path d="M16 3c2 0 3 1 3 3v2.5c0 1.2.9 2 2 2.5-1.1.5-2 1.3-2 2.5V16c0 2-1 3-3 3"/></svg></div><span>JavaScript</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" fill="#fff" text-anchor="middle">TS</text></svg></div><span>TypeScript</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="15.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="8.5" fill="#fff" text-anchor="middle">PHP</text></svg></div><span>PHP</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
-      <!-- segundo duplicado -->
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M7.5 7h9l-.4 4H9.2l.2 2.2 2.6.8 2.6-.8.2-2"/></svg></div><span>HTML5</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M16 7H8l.3 3h7l-.4 4-3 1-3-1-.2-2"/></svg></div><span>CSS3</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3 1-3 3v2.5c0 1.2-.9 2-2 2.5 1.1.5 2 1.3 2 2.5V16c0 2 1 3 3 3"/><path d="M16 3c2 0 3 1 3 3v2.5c0 1.2.9 2 2 2.5-1.1.5-2 1.3-2 2.5V16c0 2-1 3-3 3"/></svg></div><span>JavaScript</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" fill="#fff" text-anchor="middle">TS</text></svg></div><span>TypeScript</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></div><span>Java</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></div><span>Spring Boot</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="15.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="8.5" fill="#fff" text-anchor="middle">PHP</text></svg></div><span>PHP</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><span>Oracle</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></div><span>Git</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><span>SVN</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></div><span>Linux</span></div>
-      <div class="tech-item" aria-hidden="true"><div class="tech-badge" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></div><span>VS Code</span></div>
+  <!-- HERO -->
+  <section id="topo" class="hero" aria-labelledby="nome">
+    <div class="login" id="login" aria-hidden="true">Last login: on tty1 — curitiba, pr</div>
+    <div class="prompt" aria-hidden="true"><span class="u">italo@bravos</span><span class="s">:</span><span class="p">~</span><span class="s">$</span> figlet itsbravos</div>
+<pre class="ascii" role="img" aria-label="ITSBRAVOS">██╗████████╗███████╗██████╗ ██████╗  █████╗ ██╗   ██╗ ██████╗ ███████╗
+██║╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██║   ██║██╔═══██╗██╔════╝
+██║   ██║   ███████╗██████╔╝██████╔╝███████║██║   ██║██║   ██║███████╗
+██║   ██║   ╚════██║██╔══██╗██╔══██╗██╔══██║╚██╗ ██╔╝██║   ██║╚════██║
+██║   ██║   ███████║██████╔╝██║  ██║██║  ██║ ╚████╔╝ ╚██████╔╝███████║
+╚═╝   ╚═╝   ╚══════╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝   ╚═════╝ ╚══════╝</pre>
+    <div class="prompt" aria-hidden="true"><span class="u">italo@bravos</span><span class="s">:</span><span class="p">~</span><span class="s">$</span> whoami</div>
+    <h1 id="nome">Ítalo Victor Bravos</h1>
+    <ul class="tags" style="list-style:none;margin:0;padding:0">
+      <li class="tag on">DEVELOPER</li>
+      <li class="tag">QA</li>
+      <li class="tag" data-i18n="tagCreator">CRIADOR DE CONTEÚDO</li>
+      <li class="tag">CURITIBA, PR</li>
+    </ul>
+    <p class="lead" data-i18n="heroLead">Desenvolvedor e QA de dia, jogador de Rainbow Six Siege e criador de conteúdo de gameplay no tempo livre. Construo coisas que funcionam de verdade, no código e na live.</p>
+    <div class="btns">
+      <a class="btn solid" href="#projetos" data-i18n="ctaProjects">./ver_projetos.sh</a>
+      <a class="btn" href="https://express.adobe.com/publishedV2/urn:aaid:sc:US:f877095e-0457-5854-8889-a09675451264?promoid=Y69SGM5H&amp;sdid=C4SZ2FYJ&amp;mv=other" target="_blank" rel="noopener"><span data-i18n="ctaCv">cat curriculo.pdf</span><span class="sr-only" data-i18n="newTab"> (abre em nova aba)</span></a>
     </div>
-  </div>
+    <div class="compiling" aria-hidden="true">&gt; <span id="typed">compilando alguma coisa</span><span class="cursor"></span></div>
+  </section>
 
-<section id="sobre">
-  <div class="wrap">
-    <div class="eyebrow">// SOBRE</div>
-    <h2>Quem manja do que tá rolando</h2>
-    <div class="about-grid">
-      <div>
-        <p>Trabalho com suporte técnico e entrega de projetos, transitando entre sistemas backend (Java, Spring Boot, Oracle) e infraestrutura de coleções digitais (Omeka S, IIIF/Mirador). No dia a dia também mantenho repositórios via SVN e apoio times de Sustentação, Infraestrutura e Desenvolvimento.</p>
-        <p>Fora do expediente, o teclado não descansa: viro streamer/criador de conteúdo de CS2, edito vídeo no DaVinci Resolve e, de vez em quando, troco o mouse pelo violão pra tocar um sertanejo.</p>
-        <a class="resume-btn" href="https://express.adobe.com/publishedV2/urn:aaid:sc:US:f877095e-0457-5854-8889-a09675451264?promoid=Y69SGM5H&sdid=C4SZ2FYJ&mv=other" target="_blank" rel="noopener">Ver Currículo →</a>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    :: html5 :: css3 :: javascript :: typescript :: java :: spring boot :: php :: oracle :: git :: svn :: linux :: vs code
+    :: html5 :: css3 :: javascript :: typescript :: java :: spring boot :: php :: oracle :: git :: svn :: linux :: vs code&nbsp;
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- SOBRE -->
+  <section id="sobre" class="block" aria-labelledby="h-sobre">
+    <div class="kicker" aria-hidden="true" data-i18n="k1">// 01 SOBRE</div>
+    <h2 id="h-sobre" data-i18n="h1">Quem manja do que tá rolando</h2>
+    <div class="about">
+      <div class="about-text">
+        <p data-i18n="about1">Trabalho com suporte técnico e entrega de projetos, transitando entre sistemas backend (Java, Spring Boot, Oracle) e infraestrutura de coleções digitais (Omeka S, IIIF/Mirador). No dia a dia também mantenho repositórios via SVN e apoio times de Sustentação, Infraestrutura e Desenvolvimento.</p>
+        <p data-i18n="about2">Fora do expediente, o teclado não descansa: viro streamer/criador de conteúdo de CS2, edito vídeo no DaVinci Resolve e, de vez em quando, troco o mouse pelo violão pra tocar um sertanejo.</p>
       </div>
-      <div>
-        <div class="stat-box reveal">
-          <div class="label">Base</div>
-          <div class="value">Curitiba, PR, Brasil</div>
-        </div>
-        <div class="stat-box reveal">
-          <div class="label">Time</div>
-          <div class="value">Wise System</div>
-        </div>
-        <div class="stat-box reveal">
-          <div class="label">Game principal</div>
-          <div class="value">Rainbow Six Siege</div>
-        </div>
+      <div class="panel">
+        <div class="panel-bar" aria-hidden="true"><span>$ neofetch --mini</span></div>
+        <dl class="facts">
+          <dt>base</dt><dd data-i18n="factBase">Curitiba, PR, Brasil</dd>
+          <dt>time</dt><dd>Wise System</dd>
+          <dt>main_game</dt><dd>Rainbow Six Siege</dd>
+          <dt>shell</dt><dd data-i18n="factShell">bash + café</dd>
+        </dl>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="projetos">
-  <div class="wrap">
-    <div class="eyebrow">// PROJETOS</div>
-    <h2>Coisas que eu construí</h2>
-    <div class="project-grid">
-
-      <div class="project-card reveal">
-        <div class="project-thumb thumb-clip">
-          <img src="images/clipmaster.png" alt="Tela do ClipMaster for Linux">
-        <a class="thumb-overlay" href="https://github.com/itsbravos/ClipMaster-for-Linux" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
-        <div class="ptitle">ClipMaster for Linux</div>
-        <p class="pdesc">Ferramenta pra quem vive no terminal e cansou de perder o que copiou: gerenciador de área de transferência feito pra Linux.</p>
-        <div class="pill-row">
-          <span class="pill">TypeScript</span>
-          <span class="pill">Linux</span>
-        </div>
-        <a class="pcta" href="https://github.com/itsbravos/ClipMaster-for-Linux" target="_blank" rel="noopener">ver repositório →</a>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb thumb-financio">
-          <img src="images/financio.png" alt="Tela do Financio">
-        <a class="thumb-overlay" href="https://github.com/itsbravos/Financio" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
-        <div class="ptitle">Financio</div>
-        <p class="pdesc">App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.</p>
-        <div class="pill-row">
-          <span class="pill">TypeScript</span>
-          <span class="pill">Multi-conta</span>
-        </div>
-        <a class="pcta" href="https://github.com/itsbravos/Financio" target="_blank" rel="noopener">ver repositório →</a>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb thumb-netscan">
-          <img src="images/netscan.png" alt="Tela do NetScan Linux">
-        <a class="thumb-overlay" href="https://github.com/itsbravos/NetScan-Linux" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
-        <div class="ptitle">NetScan Linux</div>
-        <p class="pdesc">Painel de varredura e monitoramento de rede pra Linux, com autenticação de administrador protegendo o acesso.</p>
-        <div class="pill-row">
-          <span class="pill">TypeScript</span>
-          <span class="pill">Rede</span>
-        </div>
-        <a class="pcta" href="https://github.com/itsbravos/NetScan-Linux" target="_blank" rel="noopener">ver repositório →</a>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb thumb-vault">
-          <img src="images/vaultsecure.png" alt="Tela do VaultSecure">
-        <a class="thumb-overlay" href="https://github.com/itsbravos/VaultSecure" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
-        <div class="ptitle">VaultSecure</div>
-        <p class="pdesc">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem, o controle fica com você.</p>
-        <div class="pill-row">
-          <span class="pill">TypeScript</span>
-          <span class="pill">Segurança</span>
-        </div>
-        <a class="pcta" href="https://github.com/itsbravos/VaultSecure" target="_blank" rel="noopener">ver repositório →</a>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb thumb-compara">
-          <img src="images/comparaja.png" alt="Tela do ComparaJá">
-        <a class="thumb-overlay" href="https://github.com/itsbravos/ComparaJ-" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
-        <div class="ptitle">ComparaJá</div>
-        <p class="pdesc">Comparador de preços entre lojas com IA, achando a melhor oferta, cupom e frete pra cada produto. Ainda em desenvolvimento, hoje é um protótipo funcional.</p>
-        <div class="pill-row">
-          <span class="pill">TypeScript</span>
-          <span class="pill">Protótipo</span>
-        </div>
-        <a class="pcta" href="https://github.com/itsbravos/ComparaJ-" target="_blank" rel="noopener">ver repositório →</a>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb thumb-sticky">
-          <img src="images/stickynotes.png" alt="Tela do Sticky Notes">
-        <a class="thumb-overlay" href="https://github.com/itsbravos/sticky-notes" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></div>
-        <div class="ptitle">Sticky Notes</div>
-        <p class="pdesc">App de notas adesivas 100% client-side: canvas livre, modo árvore pra mapa mental, conexões entre notas e pastas, tudo sem servidor.</p>
-        <div class="pill-row">
-          <span class="pill">TypeScript</span>
-          <span class="pill">React</span>
-        </div>
-        <a class="pcta" href="https://github.com/itsbravos/sticky-notes" target="_blank" rel="noopener">ver repositório →</a>
-      </div>
-
+  <!-- PROJETOS -->
+  <section id="projetos" class="block" aria-labelledby="h-proj">
+    <div class="kicker" aria-hidden="true" data-i18n="k2">// 02 PROJETOS</div>
+    <div class="row-between">
+      <h2 id="h-proj" data-i18n="h2">Coisas que eu construí</h2>
+      <span class="hint" aria-hidden="true" data-i18n="projHint">$ ls ~/projetos | wc -l → 6</span>
     </div>
-  </div>
-</section>
+    <ul class="grid">
 
-<section id="stack">
-  <div class="wrap">
-    <div class="eyebrow">// STACK</div>
-    <h2>Com o que eu trabalho</h2>
-  </div>
-  <div class="wrap">
-    <div class="stack-groups">
-      <div class="stack-row">
-        <span class="glabel">BACKEND</span>
-        <div class="chip-row">
-          <span class="chip"><span class="chip-icon" style="background:#ED8B00;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2"/><path d="M7 2c0 1-1 1-1 2s1 1 1 2"/><path d="M11 2c0 1-1 1-1 2s1 1 1 2"/></svg></span>Java</span>
-          <span class="chip"><span class="chip-icon" style="background:#6DB33F;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c8 0 14-6 14-14V4h-3C8 4 3 9 3 17v4z"/><path d="M5 21c3-6 8-10 14-14"/></svg></span>Spring Boot</span>
-          <span class="chip"><span class="chip-icon" style="background:#777BB4;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="15.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="8.5" fill="#fff" text-anchor="middle">PHP</text></svg></span>PHP</span>
-          <span class="chip"><span class="chip-icon" style="background:#F80000;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>Oracle</span>
+      <li><article class="panel card">
+        <div class="panel-bar" aria-hidden="true"><span>┌─ clipmaster/</span><span>01/06</span></div>
+<pre class="card-art" aria-hidden="true">$ clipmaster --list
+  [1] git push origin main
+  [2] ssh italo@servidor
+  [3] sudo apt update
+&gt; _</pre>
+        <div class="card-body">
+          <h3>ClipMaster for Linux</h3>
+          <p data-i18n="p1">Ferramenta pra quem vive no terminal e cansou de perder o que copiou: gerenciador de área de transferência feito pra Linux.</p>
+          <div class="card-tags">[typescript] [linux]</div>
+          <a class="card-link" href="https://github.com/itsbravos/ClipMaster-for-Linux" target="_blank" rel="noopener">→ git clone ClipMaster-for-Linux<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
         </div>
+      </article></li>
+
+      <li><article class="panel card">
+        <div class="panel-bar" aria-hidden="true"><span>┌─ financio/</span><span>02/06</span></div>
+<pre class="card-art" aria-hidden="true" data-i18n="art2">mercado    ########....
+transporte ####........
+lazer      ######......
+orçamento  [==========]</pre>
+        <div class="card-body">
+          <h3>Financio</h3>
+          <p data-i18n="p2">App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.</p>
+          <div class="card-tags" data-i18n="t2">[typescript] [multi-conta]</div>
+          <a class="card-link" href="https://github.com/itsbravos/Financio" target="_blank" rel="noopener">→ git clone Financio<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+        </div>
+      </article></li>
+
+      <li><article class="panel card">
+        <div class="panel-bar" aria-hidden="true"><span>┌─ netscan/</span><span>03/06</span></div>
+<pre class="card-art" aria-hidden="true">      [router]
+     /   |    \
+ [pc]  [nas]  [tv]
+  ok    ok     ??</pre>
+        <div class="card-body">
+          <h3>NetScan Linux</h3>
+          <p data-i18n="p3">Painel de varredura e monitoramento de rede pra Linux, com autenticação de administrador protegendo o acesso.</p>
+          <div class="card-tags" data-i18n="t3">[typescript] [rede]</div>
+          <a class="card-link" href="https://github.com/itsbravos/NetScan-Linux" target="_blank" rel="noopener">→ git clone NetScan-Linux<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+        </div>
+      </article></li>
+
+      <li><article class="panel card">
+        <div class="panel-bar" aria-hidden="true"><span>┌─ vaultsecure/</span><span>04/06</span></div>
+<pre class="card-art" aria-hidden="true">   .-----.
+  / .---. \
+  | |   | |   ********
+ .-----------.  lock: on</pre>
+        <div class="card-body">
+          <h3>VaultSecure</h3>
+          <p data-i18n="p4">Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem, o controle fica com você.</p>
+          <div class="card-tags" data-i18n="t4">[typescript] [segurança]</div>
+          <a class="card-link" href="https://github.com/itsbravos/VaultSecure" target="_blank" rel="noopener">→ git clone VaultSecure<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+        </div>
+      </article></li>
+
+      <li><article class="panel card">
+        <div class="panel-bar" aria-hidden="true"><span>┌─ comparaja/</span><span>05/06</span></div>
+<pre class="card-art" aria-hidden="true" data-i18n="art5">loja_a  R$ ---,--
+loja_b  R$ ---,--  &lt;- menor
+loja_c  R$ ---,--
+frete   [calculando...]</pre>
+        <div class="card-body">
+          <h3>ComparaJá</h3>
+          <p data-i18n="p5">Comparador de preços entre lojas com IA, achando a melhor oferta, cupom e frete pra cada produto. Ainda em desenvolvimento, hoje é um protótipo funcional.</p>
+          <div class="card-tags" data-i18n="t5">[typescript] [protótipo]</div>
+          <a class="card-link" href="https://github.com/itsbravos/ComparaJ-" target="_blank" rel="noopener">→ git clone ComparaJ-<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+        </div>
+      </article></li>
+
+      <li><article class="panel card">
+        <div class="panel-bar" aria-hidden="true"><span>┌─ sticky-notes/</span><span>06/06</span></div>
+<pre class="card-art" aria-hidden="true" data-i18n="art6">+-------+     +-------+
+| ideia |----&gt;| todo  |
++-------+     +-------+
+                  |
+              +-------+</pre>
+        <div class="card-body">
+          <h3>Sticky Notes</h3>
+          <p data-i18n="p6">App de notas adesivas 100% client-side: canvas livre, modo árvore pra mapa mental, conexões entre notas e pastas, tudo sem servidor.</p>
+          <div class="card-tags">[typescript] [react]</div>
+          <a class="card-link" href="https://github.com/itsbravos/sticky-notes" target="_blank" rel="noopener">→ git clone sticky-notes<span class="sr-only" data-i18n="repoSr"> — repositório no GitHub (abre em nova aba)</span></a>
+        </div>
+      </article></li>
+
+    </ul>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" class="block" aria-labelledby="h-stack">
+    <div class="kicker" aria-hidden="true">// 03 STACK</div>
+    <h2 id="h-stack" data-i18n="h3">Com o que eu trabalho</h2>
+<pre class="panel tree" aria-hidden="true">~/stack
+├── <span class="d">backend/</span>
+│   ├── java
+│   ├── spring-boot
+│   ├── php
+│   └── oracle
+├── <span class="d">frontend/</span>
+│   ├── html5
+│   ├── css3
+│   ├── javascript
+│   └── typescript
+└── <span class="d" data-i18n="treeTools">ferramentas/</span>
+    ├── git
+    ├── svn
+    ├── linux
+    └── vs-code
+
+<span class="m">3 directories, 12 files</span></pre>
+    <!-- versão para leitores de tela -->
+    <div class="sr-only">
+      <h3>Backend</h3><ul><li>Java</li><li>Spring Boot</li><li>PHP</li><li>Oracle</li></ul>
+      <h3>Frontend</h3><ul><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>TypeScript</li></ul>
+      <h3 data-i18n="srTools">Ferramentas</h3><ul><li>Git</li><li>SVN</li><li>Linux</li><li>VS Code</li></ul>
+    </div>
+  </section>
+
+  <!-- FORA DO TECLADO -->
+  <section id="fora" class="block" aria-labelledby="h-fora">
+    <div class="kicker" aria-hidden="true" data-i18n="k4">// 04 FORA DO TECLADO</div>
+    <h2 id="h-fora" data-i18n="h4">Quando o VS Code fecha</h2>
+    <div class="hobbies">
+      <div class="hobby">
+<pre aria-hidden="true">  ___________
+ '._==_==_=_.'
+ .-\:      /-.
+| (|:.     |) |
+ '-|:.     |-'
+   \::.    /
+    '::. .'
+      ) (
+    _.' '._
+   '-------'</pre>
+        <h3 data-i18n="hob1t">Platinando jogos</h3>
+        <p data-i18n="hob1d">Sempre atrás da platina, caçando troféu por troféu até fechar o jogo 100%.</p>
       </div>
-      <div class="stack-row">
-        <span class="glabel">FRONTEND</span>
-        <div class="chip-row">
-          <span class="chip"><span class="chip-icon" style="background:#E34F26;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M7.5 7h9l-.4 4H9.2l.2 2.2 2.6.8 2.6-.8.2-2"/></svg></span>HTML5</span>
-          <span class="chip"><span class="chip-icon" style="background:#1572B6;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M16 7H8l.3 3h7l-.4 4-3 1-3-1-.2-2"/></svg></span>CSS3</span>
-          <span class="chip"><span class="chip-icon" style="background:#F7DF1E;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3 1-3 3v2.5c0 1.2-.9 2-2 2.5 1.1.5 2 1.3 2 2.5V16c0 2 1 3 3 3"/><path d="M16 3c2 0 3 1 3 3v2.5c0 1.2.9 2 2 2.5-1.1.5-2 1.3-2 2.5V16c0 2-1 3-3 3"/></svg></span>JavaScript</span>
-          <span class="chip"><span class="chip-icon" style="background:#3178C6;"><svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" fill="#fff" text-anchor="middle">TS</text></svg></span>TypeScript</span>
-        </div>
+      <div class="hobby">
+<pre aria-hidden="true">
+ .-------------------.
+ | REC ●    00:42:17 |
+ |                   |
+ |     ▶  GAMEPLAY   |
+ |                   |
+ '-------------------'
+   |||  davinci  |||
+</pre>
+        <h3 data-i18n="hob2t">Conteúdo de gameplay</h3>
+        <p data-i18n="hob2d">Gravo e edito vídeo de gameplay no DaVinci Resolve pro YouTube.</p>
       </div>
-      <div class="stack-row">
-        <span class="glabel">FERRAMENTAS</span>
-        <div class="chip-row">
-          <span class="chip"><span class="chip-icon" style="background:#F05032;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="6" cy="18" r="2.2"/><circle cx="6" cy="4.8" r="2.2"/><circle cx="18" cy="7" r="2.2"/><path d="M18 9v2a4 4 0 0 1-4 4H9"/></svg></span>Git</span>
-          <span class="chip"><span class="chip-icon" style="background:#809CC9;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></span>SVN</span>
-          <span class="chip"><span class="chip-icon" style="background:#FCC624;"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 11 12 7 15"/><line x1="13" y1="15" x2="17" y2="15"/></svg></span>Linux</span>
-          <span class="chip"><span class="chip-icon" style="background:#007ACC;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="9 9 6 12 9 15"/><polyline points="15 9 18 12 15 15"/></svg></span>VS Code</span>
-        </div>
+      <div class="hobby">
+<pre aria-hidden="true">        _
+       |_|
+       | |
+       |=|
+       |=|
+     .-|=|-.
+    /  |=|  \
+   |  ( o )  |
+    \  |=|  /
+     '-...-'</pre>
+        <h3 data-i18n="hob3t">Tocando instrumentos</h3>
+        <p data-i18n="hob3d">Nas horas vagas, é sertanejo no violão.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="fora">
-  <div class="wrap">
-    <div class="eyebrow">// FORA DO TECLADO</div>
-    <h2>Quando o VS Code fecha</h2>
-    <div class="off-grid">
-      <div class="off-card reveal">
-        <span class="emoji">🏆</span>
-        <h3>Platinando jogos</h3>
-        <p>Sempre atrás da platina, caçando troféu por troféu até fechar o jogo 100%.</p>
-      </div>
-      <div class="off-card reveal">
-        <span class="emoji">🎬</span>
-        <h3>Conteúdo de gameplay</h3>
-        <p>Gravo e edito vídeo de gameplay no DaVinci Resolve pro YouTube.</p>
-      </div>
-      <div class="off-card reveal">
-        <span class="emoji">🎸</span>
-        <h3>Tocando instrumentos</h3>
-        <p>Nas horas vagas, é sertanejo no violão.</p>
+  <!-- CONTATO -->
+  <section id="contato" class="block" aria-labelledby="h-contato">
+    <div class="kicker" aria-hidden="true" data-i18n="k5">// 05 CONTATO</div>
+    <h2 id="h-contato" data-i18n="h5">Bora trocar uma ideia</h2>
+    <p class="lead" style="font-size:.9375rem" data-i18n="contactLead">GitHub, LinkedIn, Instagram, Steam ou e-mail, escolhe o canal.</p>
+    <div class="panel">
+      <div class="term">
+        <div class="prompt" aria-hidden="true"><span class="u">italo@bravos</span><span class="s">:~$</span> <span data-i18n="lsContact">ls ~/contato</span></div>
+        <ul style="list-style:none;margin:0;padding:0">
+          <li><a href="https://github.com/itsbravos" target="_blank" rel="noopener"><span class="k">github</span>github.com/itsbravos</a></li>
+          <li><a href="https://www.linkedin.com/in/italobravos/" target="_blank" rel="noopener"><span class="k">linkedin</span>in/italobravos</a></li>
+          <li><a href="https://www.instagram.com/itsbravos/" target="_blank" rel="noopener"><span class="k">instagram</span>@itsbravos</a></li>
+          <li><a href="https://steamcommunity.com/id/ItsBravos/" target="_blank" rel="noopener"><span class="k">steam</span>id/ItsBravos</a></li>
+          <li><a href="mailto:italo38643411@gmail.com"><span class="k">email</span>italo38643411@gmail.com</a></li>
+        </ul>
+        <div class="prompt" style="margin-top:6px" aria-hidden="true"><span class="u">italo@bravos</span><span class="s">:~$</span><span class="cursor"></span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer id="contato">
+</div>
+</main>
+
+<footer>
   <div class="wrap">
-    <div class="eyebrow" style="justify-content:center;display:flex;">// CONTATO</div>
-    <h2>Bora trocar uma ideia</h2>
-    <p class="hero-sub">GitHub, LinkedIn, Instagram, Steam ou e-mail, escolhe o canal.</p>
-    <div class="contact-row">
-      <a class="contact-pill" href="https://github.com/itsbravos" target="_blank" rel="noopener">GitHub</a>
-      <a class="contact-pill" href="https://www.linkedin.com/in/italobravos/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="contact-pill" href="https://www.instagram.com/itsbravos/" target="_blank" rel="noopener">Instagram</a>
-      <a class="contact-pill" href="https://steamcommunity.com/id/ItsBravos/" target="_blank" rel="noopener">Steam</a>
-      <a class="contact-pill" href="mailto:italo38643411@gmail.com">Email</a>
+    <span>© 2026 Ítalo Victor Bravos — [ EOF ]</span>
+    <div class="themes" role="group" aria-label="Cor do terminal" data-i18n-aria="themeLabel">
+      <span aria-hidden="true">theme:</span>
+      <button type="button" class="tbtn" data-set="green">green</button>
+      <button type="button" class="tbtn" data-set="amber">amber</button>
+      <button type="button" class="tbtn" data-set="cyan">cyan</button>
+      <button type="button" class="tbtn" data-set="pink">pink</button>
     </div>
-    <div class="copyright">© 2026 Ítalo Victor Bravos</div>
   </div>
 </footer>
 
+<div class="sr-only" aria-live="polite" id="announce"></div>
+
 <script>
-  const el = document.getElementById('status-text');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function () {
+  var root = document.documentElement;
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
 
-  const statuses = [
-    "compilando alguma coisa",
-    "rankeando no Rainbow Six Siege",
-    "editando um clipe novo",
-    "revisando um PR",
-    "afinando o violão"
-  ];
+  /* ================= TRADUÇÕES ================= */
+  var I18N = {
+    pt: {
+      htmlLang: 'pt-BR',
+      title: 'Ítalo Bravos, dev, gamer, criador',
+      desc: 'Portfólio de Ítalo Victor Bravos, desenvolvedor, QA e criador de conteúdo.',
+      skip: 'Pular para o conteúdo',
+      navLabel: 'Seções', langLabel: 'Idioma', themeLabel: 'Cor do terminal',
+      nav1: 'sobre', nav2: 'projetos', nav3: 'stack', nav4: 'fora_do_teclado', nav5: 'contato',
+      a11yBtn: 'Opções de acessibilidade', a11yTitle: '$ acessibilidade --config',
+      a11ySize: 'Tamanho do texto', a11yContrast: 'Alto contraste', a11yReadable: 'Fonte de leitura fácil',
+      a11yMotion: 'Pausar animações', a11yCrt: 'Efeito CRT (scanlines)', a11yReset: 'restaurar padrão',
+      tagCreator: 'CRIADOR DE CONTEÚDO',
+      heroLead: 'Desenvolvedor e QA de dia, jogador de Rainbow Six Siege e criador de conteúdo de gameplay no tempo livre. Construo coisas que funcionam de verdade, no código e na live.',
+      ctaProjects: './ver_projetos.sh', ctaCv: 'cat curriculo.pdf', newTab: ' (abre em nova aba)',
+      k1: '// 01 SOBRE', h1: 'Quem manja do que tá rolando',
+      about1: 'Trabalho com suporte técnico e entrega de projetos, transitando entre sistemas backend (Java, Spring Boot, Oracle) e infraestrutura de coleções digitais (Omeka S, IIIF/Mirador). No dia a dia também mantenho repositórios via SVN e apoio times de Sustentação, Infraestrutura e Desenvolvimento.',
+      about2: 'Fora do expediente, o teclado não descansa: viro streamer/criador de conteúdo de CS2, edito vídeo no DaVinci Resolve e, de vez em quando, troco o mouse pelo violão pra tocar um sertanejo.',
+      factBase: 'Curitiba, PR, Brasil', factShell: 'bash + café',
+      k2: '// 02 PROJETOS', h2: 'Coisas que eu construí', projHint: '$ ls ~/projetos | wc -l → 6',
+      p1: 'Ferramenta pra quem vive no terminal e cansou de perder o que copiou: gerenciador de área de transferência feito pra Linux.',
+      p2: 'App de controle financeiro pessoal com categorização de gastos e orçamento mensal, pensado pra rodar em PC e mobile.',
+      p3: 'Painel de varredura e monitoramento de rede pra Linux, com autenticação de administrador protegendo o acesso.',
+      p4: 'Cofre de senhas local. Guarda credenciais com segurança sem depender de serviço na nuvem, o controle fica com você.',
+      p5: 'Comparador de preços entre lojas com IA, achando a melhor oferta, cupom e frete pra cada produto. Ainda em desenvolvimento, hoje é um protótipo funcional.',
+      p6: 'App de notas adesivas 100% client-side: canvas livre, modo árvore pra mapa mental, conexões entre notas e pastas, tudo sem servidor.',
+      t2: '[typescript] [multi-conta]', t3: '[typescript] [rede]', t4: '[typescript] [segurança]', t5: '[typescript] [protótipo]',
+      art2: 'mercado    ########....\ntransporte ####........\nlazer      ######......\norçamento  [==========]',
+      art5: 'loja_a  R$ ---,--\nloja_b  R$ ---,--  <- menor\nloja_c  R$ ---,--\nfrete   [calculando...]',
+      art6: '+-------+     +-------+\n| ideia |---->| todo  |\n+-------+     +-------+\n                  |\n              +-------+',
+      repoSr: ' — repositório no GitHub (abre em nova aba)',
+      h3: 'Com o que eu trabalho', treeTools: 'ferramentas/', srTools: 'Ferramentas',
+      k4: '// 04 FORA DO TECLADO', h4: 'Quando o VS Code fecha',
+      hob1t: 'Platinando jogos', hob1d: 'Sempre atrás da platina, caçando troféu por troféu até fechar o jogo 100%.',
+      hob2t: 'Conteúdo de gameplay', hob2d: 'Gravo e edito vídeo de gameplay no DaVinci Resolve pro YouTube.',
+      hob3t: 'Tocando instrumentos', hob3d: 'Nas horas vagas, é sertanejo no violão.',
+      k5: '// 05 CONTATO', h5: 'Bora trocar uma ideia',
+      contactLead: 'GitHub, LinkedIn, Instagram, Steam ou e-mail, escolhe o canal.', lsContact: 'ls ~/contato',
+      typed: ['compilando alguma coisa', 'rodando os testes de QA', 'renderizando gameplay no davinci', 'afinando o violão', 'git commit -m "mais um projeto"'],
+      login: 'Último login', loc: 'curitiba, pr',
+      changedLang: 'Idioma alterado para português'
+    },
+    en: {
+      htmlLang: 'en',
+      title: 'Ítalo Bravos, dev, gamer, creator',
+      desc: 'Portfolio of Ítalo Victor Bravos, developer, QA and content creator.',
+      skip: 'Skip to content',
+      navLabel: 'Sections', langLabel: 'Language', themeLabel: 'Terminal color',
+      nav1: 'about', nav2: 'projects', nav3: 'stack', nav4: 'off_the_keyboard', nav5: 'contact',
+      a11yBtn: 'Accessibility options', a11yTitle: '$ accessibility --config',
+      a11ySize: 'Text size', a11yContrast: 'High contrast', a11yReadable: 'Easy-reading font',
+      a11yMotion: 'Pause animations', a11yCrt: 'CRT effect (scanlines)', a11yReset: 'reset to default',
+      tagCreator: 'CONTENT CREATOR',
+      heroLead: 'Developer and QA by day, Rainbow Six Siege player and gameplay content creator in my free time. I build things that actually work, in the code and on stream.',
+      ctaProjects: './see_projects.sh', ctaCv: 'cat resume.pdf', newTab: ' (opens in a new tab)',
+      k1: '// 01 ABOUT', h1: 'Someone who knows what’s going on',
+      about1: 'I work in technical support and project delivery, moving between backend systems (Java, Spring Boot, Oracle) and digital collections infrastructure (Omeka S, IIIF/Mirador). Day to day I also maintain SVN repositories and support the Sustaining, Infrastructure and Development teams.',
+      about2: 'After hours the keyboard doesn’t rest: I stream and create CS2 content, edit video in DaVinci Resolve and, every now and then, swap the mouse for a guitar to play some sertanejo.',
+      factBase: 'Curitiba, PR, Brazil', factShell: 'bash + coffee',
+      k2: '// 02 PROJECTS', h2: 'Things I’ve built', projHint: '$ ls ~/projects | wc -l → 6',
+      p1: 'For people who live in the terminal and are tired of losing what they copied: a clipboard manager built for Linux.',
+      p2: 'Personal finance app with expense categories and monthly budgets, designed to run on desktop and mobile.',
+      p3: 'Network scanning and monitoring dashboard for Linux, with admin authentication guarding access.',
+      p4: 'Local password vault. Stores credentials securely without relying on a cloud service, so you stay in control.',
+      p5: 'AI-powered price comparison across stores, finding the best deal, coupon and shipping for each product. Still in development; currently a working prototype.',
+      p6: '100% client-side sticky notes app: free canvas, tree mode for mind maps, links between notes and folders, no server needed.',
+      t2: '[typescript] [multi-account]', t3: '[typescript] [network]', t4: '[typescript] [security]', t5: '[typescript] [prototype]',
+      art2: 'groceries  ########....\ntransport  ####........\nfun        ######......\nbudget     [==========]',
+      art5: 'store_a  R$ ---,--\nstore_b  R$ ---,--  <- lowest\nstore_c  R$ ---,--\nshipping [calculating...]',
+      art6: '+-------+     +-------+\n| idea  |---->| todo  |\n+-------+     +-------+\n                  |\n              +-------+',
+      repoSr: ' — GitHub repository (opens in a new tab)',
+      h3: 'What I work with', treeTools: 'tools/', srTools: 'Tools',
+      k4: '// 04 OFF THE KEYBOARD', h4: 'When VS Code closes',
+      hob1t: 'Platinum hunting', hob1d: 'Always chasing the platinum, trophy after trophy until the game is 100%.',
+      hob2t: 'Gameplay content', hob2d: 'I record and edit gameplay videos in DaVinci Resolve for YouTube.',
+      hob3t: 'Playing music', hob3d: 'In my spare time, it’s sertanejo on the guitar.',
+      k5: '// 05 CONTACT', h5: 'Let’s talk',
+      contactLead: 'GitHub, LinkedIn, Instagram, Steam or email, pick your channel.', lsContact: 'ls ~/contact',
+      typed: ['compiling something', 'running the QA tests', 'rendering gameplay in davinci', 'tuning the guitar', 'git commit -m "one more project"'],
+      login: 'Last login', loc: 'curitiba, br',
+      changedLang: 'Language changed to English'
+    }
+  };
 
-  if(!reduceMotion){
-    let i = 0;
-    setInterval(() => {
-      i = (i + 1) % statuses.length;
-      el.style.opacity = 0;
-      setTimeout(() => {
-        el.textContent = statuses[i];
-        el.style.opacity = 1;
-      }, 250);
-    }, 3200);
-    el.style.transition = 'opacity 0.25s';
+  var lang = 'pt';
+  var announce = document.getElementById('announce');
+  var langBtns = document.querySelectorAll('[data-lang]');
+
+  function setLang(l, speak) {
+    if (!I18N[l]) l = 'pt';
+    lang = l;
+    var t = I18N[l];
+    root.setAttribute('lang', t.htmlLang);
+    document.title = t.title;
+    document.querySelector('meta[name="description"]').setAttribute('content', t.desc);
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var v = t[el.getAttribute('data-i18n')];
+      if (typeof v === 'string') el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      var v = t[el.getAttribute('data-i18n-aria')];
+      if (v) el.setAttribute('aria-label', v);
+    });
+    langBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === l)); });
+    updateLogin();
+    restartTyping();
+    store.set('itsbravos-lang', l);
+    if (speak) announce.textContent = t.changedLang;
+  }
+  langBtns.forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang, true); }); });
+
+  /* ================= "LAST LOGIN" ================= */
+  function updateLogin() {
+    var t = I18N[lang];
+    var fmt = new Date().toLocaleString(t.htmlLang, { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+    document.getElementById('login').textContent = t.login + ': ' + fmt.replace(/\./g, '') + ' on tty1 — ' + t.loc;
   }
 
-  const revealEls = document.querySelectorAll('.reveal');
-  if(reduceMotion){
-    revealEls.forEach(item => item.classList.add('visible'));
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+  /* ================= TEXTO DIGITANDO ================= */
+  var typedEl = document.getElementById('typed');
+  var timer = null;
+  function motionOff() {
+    return root.classList.contains('still') || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+  function restartTyping() {
+    clearTimeout(timer);
+    var lines = I18N[lang].typed;
+    typedEl.textContent = lines[0];
+    if (motionOff()) return;
+    var li = 0, ci = lines[0].length, deleting = true;
+    function tick() {
+      if (motionOff()) { typedEl.textContent = lines[li]; return; }
+      if (deleting) {
+        ci--;
+        if (ci <= 0) { deleting = false; li = (li + 1) % lines.length; ci = 0; }
+      } else {
+        ci++;
+        if (ci >= lines[li].length) {
+          deleting = true; typedEl.textContent = lines[li];
+          timer = setTimeout(tick, 2200); return;
         }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(item => observer.observe(item));
+      }
+      typedEl.textContent = lines[li].slice(0, ci);
+      timer = setTimeout(tick, deleting ? 35 : 70);
+    }
+    timer = setTimeout(tick, 2500);
   }
-</script>
 
+  /* ================= TEMA DE COR ================= */
+  var accentBtns = document.querySelectorAll('[data-set]');
+  function setAccent(name) {
+    if (name === 'green') root.removeAttribute('data-accent');
+    else root.setAttribute('data-accent', name);
+    accentBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.set === name)); });
+    store.set('itsbravos-accent', name);
+  }
+  accentBtns.forEach(function (b) { b.addEventListener('click', function () { setAccent(b.dataset.set); }); });
+
+  /* ================= ACESSIBILIDADE ================= */
+  var a11yBtn = document.getElementById('a11y-btn');
+  var panel = document.getElementById('a11y-panel');
+  function openPanel(open) {
+    panel.hidden = !open;
+    a11yBtn.setAttribute('aria-expanded', String(open));
+    if (open) panel.querySelector('button').focus();
+  }
+  a11yBtn.addEventListener('click', function () { openPanel(panel.hidden); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) { openPanel(false); a11yBtn.focus(); }
+  });
+  document.addEventListener('click', function (e) {
+    if (!panel.hidden && !panel.contains(e.target) && !a11yBtn.contains(e.target)) openPanel(false);
+  });
+
+  var sizeBtns = panel.querySelectorAll('[data-size]');
+  function setSize(s) {
+    if (s === 'md') root.removeAttribute('data-size'); else root.setAttribute('data-size', s);
+    sizeBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.size === s)); });
+    store.set('itsbravos-size', s);
+  }
+  sizeBtns.forEach(function (b) { b.addEventListener('click', function () { setSize(b.dataset.size); }); });
+
+  var toggles = panel.querySelectorAll('[data-toggle]');
+  function setToggle(name, on) {
+    if (name === 'crt') document.body.classList.toggle('crt', on);
+    else root.classList.toggle(name, on);
+    var btn = panel.querySelector('[data-toggle="' + name + '"]');
+    btn.setAttribute('aria-pressed', String(on));
+    btn.querySelector('.state').textContent = on ? '[x]' : '[ ]';
+    store.set('itsbravos-' + name, on ? '1' : '0');
+    if (name === 'still') restartTyping();
+  }
+  toggles.forEach(function (b) {
+    b.addEventListener('click', function () { setToggle(b.dataset.toggle, b.getAttribute('aria-pressed') !== 'true'); });
+  });
+
+  document.getElementById('a11y-reset').addEventListener('click', function () {
+    setSize('md');
+    setToggle('contrast', false);
+    setToggle('readable', false);
+    setToggle('still', false);
+    setToggle('crt', true);
+  });
+
+  /* ================= INICIALIZAÇÃO ================= */
+  setAccent(store.get('itsbravos-accent') || 'green');
+  setSize(store.get('itsbravos-size') || 'md');
+  setToggle('contrast', store.get('itsbravos-contrast') === '1');
+  setToggle('readable', store.get('itsbravos-readable') === '1');
+  setToggle('still', store.get('itsbravos-still') === '1');
+  setToggle('crt', store.get('itsbravos-crt') !== '0');
+
+  var saved = store.get('itsbravos-lang');
+  var browser = (navigator.language || 'pt').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+  setLang(saved || browser, false);
+})();
+</script>
 </body>
 </html>
